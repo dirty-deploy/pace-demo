@@ -1,0 +1,9 @@
+node_modules
+dist
+.vercel
+*.log
+.DS_Store
+__MACOSX
+_frames_tmp
+# third-party reference frames are inputs for the build, not part of the deliverable
+reference/inspiration/

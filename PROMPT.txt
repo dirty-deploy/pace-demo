@@ -1,0 +1,10 @@
+You're building a small static web demo. Everything you need is in this folder.
+
+1. Read BUILD_SPEC.md fully, then DESIGN.md fully (DESIGN.md wins on anything visual). Then look at data/sample_sets.json, data/demo_student.json, the two diagrams in reference/, and the six reference sheets in reference/inspiration/ (read reference/inspiration/README.md first: borrow the techniques named there, never the content, art, logos or text).
+2. Before writing any code, ask me ALL your questions in ONE message. I'm here for about 5 minutes only, then I'll be away.
+3. After I answer (or if I don't reply), work fully on your own until every item in section 12 "Definition of done" of BUILD_SPEC.md is met. Don't stop to ask anything else: use the defaults in section 13 and record every choice in DECISIONS.md.
+4. Follow section 2 of BUILD_SPEC.md (attribution and originality) and section 9 of DESIGN.md (do not copy) strictly: credit footer on every page, no copying of Prepito's or any reference's branding, art, design or text. Don't fetch anything from prepito.in or threeui.com. Don't use any paid component library.
+5. The site must not look AI-generated or templated. Go through the anti-slop checklist in DESIGN.md section 8 on every screen before you finish.
+6. The final code must be deployable to Vercel by me without any changes: follow section 4.1 of BUILD_SPEC.md exactly (project at the folder root, vercel.json, clean npm ci && npm run build, git repo with one commit on main). You don't deploy it; I will.
+7. Run the tests, the build and the screenshot script yourself. Open every screenshot (desktop and mobile), compare it with DESIGN.md, and fix anything that looks wrong, generic, clipped or unreadable before you finish.
+8. When done, give me a short summary: how to deploy it to Vercel, how to run it locally, where the screenshots are, and anything you couldn't do.

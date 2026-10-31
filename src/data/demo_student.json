@@ -1,0 +1,33 @@
+{
+  "note": "Fictional demo data. Not a real student. Used so every screen has something to show before the visitor does anything.",
+  "student": { "name": "Demo student", "exam": "CAT 2026", "examDate": "2026-11-29", "weeklyCommitmentHours": 7 },
+  "lastFiveSessions": [
+    { "date": "2026-10-26", "plannedMinutes": 60, "completedMinutes": 45 },
+    { "date": "2026-10-27", "plannedMinutes": 45, "completedMinutes": 40 },
+    { "date": "2026-10-28", "plannedMinutes": 60, "completedMinutes": 38 },
+    { "date": "2026-10-29", "plannedMinutes": 30, "completedMinutes": 30 },
+    { "date": "2026-10-30", "plannedMinutes": 50, "completedMinutes": 35 }
+  ],
+  "paceHistory": [
+    { "setId": "S03", "expectedMinutes": 5.8, "actualMinutes": 7.0 },
+    { "setId": "S07", "expectedMinutes": 8.3, "actualMinutes": 9.5 },
+    { "setId": "S12", "expectedMinutes": 5.4, "actualMinutes": 6.0 }
+  ],
+  "topicAttempts": [
+    { "topic": "Circular seating", "attempts": 7, "accuracy": 0.57 },
+    { "topic": "Scheduling", "attempts": 3, "accuracy": 0.33 },
+    { "topic": "Venn diagrams", "attempts": 2, "accuracy": 0.5 },
+    { "topic": "Tournaments", "attempts": 0, "accuracy": null }
+  ],
+  "sampleReplay": {
+    "note": "A pre-recorded attempt so the Replay screen works before the visitor does a drill.",
+    "date": "2026-10-30",
+    "pickedOrder": ["S09", "S04", "S06", "S13", "S11"],
+    "attempts": [
+      { "setId": "S09", "capMinutes": 13.1, "minutesSpent": 15.1, "hitCap": true, "extended": true, "left": true,
+        "stalledOnClue": 3, "questions": [ { "correct": false, "seconds": 410 }, { "correct": null, "seconds": 0 }, { "correct": null, "seconds": 0 } ] },
+      { "setId": "S11", "capMinutes": 5.5, "minutesSpent": 4.6, "hitCap": false, "extended": false, "left": false,
+        "stalledOnClue": null, "questions": [ { "correct": true, "seconds": 70 }, { "correct": true, "seconds": 95 }, { "correct": true, "seconds": 110 } ] }
+    ]
+  }
+}

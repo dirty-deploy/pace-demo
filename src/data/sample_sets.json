@@ -1,0 +1,1005 @@
+{
+  "note": "Original circular-seating sets generated and checked by a brute-force solver: each set has exactly one arrangement (Asha fixed at seat 1 to remove rotations). difficultyScore and expectedMinutes are estimates from solver search effort, not validated against human solve times.",
+  "sets": [
+    {
+      "id": "S01",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Bilal sits next to Divya.",
+        "Farhan sits immediately clockwise of Divya.",
+        "Chetan sits next to Farhan.",
+        "Asha sits next to Bilal."
+      ],
+      "clueTypes": {
+        "fixed": 1,
+        "adjacency": 3,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Bilal",
+        "Divya",
+        "Farhan",
+        "Chetan",
+        "Esha"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Bilal?",
+          "options": [
+            "Asha",
+            "Divya",
+            "Farhan",
+            "Chetan"
+          ],
+          "answer": "Chetan"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Asha?",
+          "options": [
+            "Farhan",
+            "Bilal",
+            "Divya",
+            "Chetan"
+          ],
+          "answer": "Bilal"
+        },
+        {
+          "prompt": "Who sits between Chetan and Asha, going clockwise from Chetan?",
+          "options": [
+            "Divya",
+            "Esha",
+            "Farhan",
+            "Bilal"
+          ],
+          "answer": "Esha"
+        }
+      ],
+      "solverNodes": 63,
+      "difficultyScore": 1.98,
+      "expectedMinutes": 6.7,
+      "difficultyLabel": "Easier"
+    },
+    {
+      "id": "S02",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Bilal sits next to Esha.",
+        "Esha sits two seats clockwise of Farhan.",
+        "Divya sits immediately clockwise of Esha.",
+        "Farhan sits immediately clockwise of Asha."
+      ],
+      "clueTypes": {
+        "fixed": 3,
+        "adjacency": 1,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Farhan",
+        "Bilal",
+        "Esha",
+        "Divya",
+        "Chetan"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Chetan?",
+          "options": [
+            "Farhan",
+            "Divya",
+            "Bilal",
+            "Asha"
+          ],
+          "answer": "Bilal"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Farhan?",
+          "options": [
+            "Divya",
+            "Esha",
+            "Bilal",
+            "Asha"
+          ],
+          "answer": "Bilal"
+        },
+        {
+          "prompt": "Who sits between Farhan and Esha, going clockwise from Farhan?",
+          "options": [
+            "Bilal",
+            "Divya",
+            "Asha",
+            "Chetan"
+          ],
+          "answer": "Bilal"
+        }
+      ],
+      "solverNodes": 213,
+      "difficultyScore": 4.93,
+      "expectedMinutes": 11.9,
+      "difficultyLabel": "Harder"
+    },
+    {
+      "id": "S03",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Bilal sits two seats clockwise of Farhan.",
+        "Chetan sits immediately clockwise of Bilal.",
+        "Asha sits immediately clockwise of Divya."
+      ],
+      "clueTypes": {
+        "fixed": 3,
+        "adjacency": 0,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Farhan",
+        "Esha",
+        "Bilal",
+        "Chetan",
+        "Divya"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Asha?",
+          "options": [
+            "Chetan",
+            "Divya",
+            "Bilal",
+            "Esha"
+          ],
+          "answer": "Bilal"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Divya?",
+          "options": [
+            "Bilal",
+            "Farhan",
+            "Asha",
+            "Chetan"
+          ],
+          "answer": "Asha"
+        },
+        {
+          "prompt": "Who sits between Esha and Chetan, going clockwise from Esha?",
+          "options": [
+            "Divya",
+            "Bilal",
+            "Farhan",
+            "Asha"
+          ],
+          "answer": "Bilal"
+        }
+      ],
+      "solverNodes": 51,
+      "difficultyScore": 1.47,
+      "expectedMinutes": 5.8,
+      "difficultyLabel": "Easier"
+    },
+    {
+      "id": "S04",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Bilal sits next to Divya.",
+        "Asha does not sit next to Divya.",
+        "Chetan sits immediately clockwise of Farhan.",
+        "Esha sits immediately clockwise of Bilal."
+      ],
+      "clueTypes": {
+        "fixed": 2,
+        "adjacency": 1,
+        "negative": 1
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Farhan",
+        "Chetan",
+        "Divya",
+        "Bilal",
+        "Esha"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Farhan?",
+          "options": [
+            "Chetan",
+            "Bilal",
+            "Divya",
+            "Esha"
+          ],
+          "answer": "Bilal"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Esha?",
+          "options": [
+            "Divya",
+            "Chetan",
+            "Asha",
+            "Bilal"
+          ],
+          "answer": "Asha"
+        },
+        {
+          "prompt": "Who sits between Chetan and Bilal, going clockwise from Chetan?",
+          "options": [
+            "Divya",
+            "Farhan",
+            "Esha",
+            "Asha"
+          ],
+          "answer": "Divya"
+        }
+      ],
+      "solverNodes": 127,
+      "difficultyScore": 3.68,
+      "expectedMinutes": 9.7,
+      "difficultyLabel": "Harder"
+    },
+    {
+      "id": "S05",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Asha does not sit opposite Chetan.",
+        "Chetan sits next to Esha.",
+        "Bilal sits next to Chetan.",
+        "Esha sits immediately clockwise of Divya."
+      ],
+      "clueTypes": {
+        "fixed": 1,
+        "adjacency": 2,
+        "negative": 1
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Farhan",
+        "Divya",
+        "Esha",
+        "Chetan",
+        "Bilal"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Esha?",
+          "options": [
+            "Asha",
+            "Farhan",
+            "Bilal",
+            "Divya"
+          ],
+          "answer": "Asha"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Chetan?",
+          "options": [
+            "Esha",
+            "Bilal",
+            "Farhan",
+            "Divya"
+          ],
+          "answer": "Bilal"
+        },
+        {
+          "prompt": "Who sits between Asha and Divya, going clockwise from Asha?",
+          "options": [
+            "Farhan",
+            "Esha",
+            "Chetan",
+            "Bilal"
+          ],
+          "answer": "Farhan"
+        }
+      ],
+      "solverNodes": 82,
+      "difficultyScore": 2.62,
+      "expectedMinutes": 7.8,
+      "difficultyLabel": "Medium"
+    },
+    {
+      "id": "S06",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Bilal sits next to Divya.",
+        "Asha sits next to Divya.",
+        "Asha does not sit opposite Chetan.",
+        "Chetan sits two seats clockwise of Esha."
+      ],
+      "clueTypes": {
+        "fixed": 1,
+        "adjacency": 2,
+        "negative": 1
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Divya",
+        "Bilal",
+        "Esha",
+        "Farhan",
+        "Chetan"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Divya?",
+          "options": [
+            "Bilal",
+            "Esha",
+            "Chetan",
+            "Farhan"
+          ],
+          "answer": "Farhan"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Chetan?",
+          "options": [
+            "Farhan",
+            "Esha",
+            "Divya",
+            "Asha"
+          ],
+          "answer": "Asha"
+        },
+        {
+          "prompt": "Who sits between Chetan and Divya, going clockwise from Chetan?",
+          "options": [
+            "Bilal",
+            "Asha",
+            "Farhan",
+            "Esha"
+          ],
+          "answer": "Asha"
+        }
+      ],
+      "solverNodes": 84,
+      "difficultyScore": 2.68,
+      "expectedMinutes": 7.9,
+      "difficultyLabel": "Medium"
+    },
+    {
+      "id": "S07",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Divya sits immediately clockwise of Chetan.",
+        "Bilal sits immediately clockwise of Divya.",
+        "Divya sits two seats clockwise of Farhan.",
+        "Asha sits two seats clockwise of Divya."
+      ],
+      "clueTypes": {
+        "fixed": 4,
+        "adjacency": 0,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Esha",
+        "Farhan",
+        "Chetan",
+        "Divya",
+        "Bilal"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Esha?",
+          "options": [
+            "Farhan",
+            "Divya",
+            "Bilal",
+            "Asha"
+          ],
+          "answer": "Divya"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Chetan?",
+          "options": [
+            "Divya",
+            "Bilal",
+            "Esha",
+            "Farhan"
+          ],
+          "answer": "Divya"
+        },
+        {
+          "prompt": "Who sits between Farhan and Divya, going clockwise from Farhan?",
+          "options": [
+            "Bilal",
+            "Asha",
+            "Esha",
+            "Chetan"
+          ],
+          "answer": "Chetan"
+        }
+      ],
+      "solverNodes": 91,
+      "difficultyScore": 2.87,
+      "expectedMinutes": 8.3,
+      "difficultyLabel": "Harder"
+    },
+    {
+      "id": "S08",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Divya sits two seats clockwise of Esha.",
+        "Chetan sits two seats clockwise of Asha.",
+        "Farhan sits immediately clockwise of Chetan."
+      ],
+      "clueTypes": {
+        "fixed": 3,
+        "adjacency": 0,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Divya",
+        "Chetan",
+        "Farhan",
+        "Bilal",
+        "Esha"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Chetan?",
+          "options": [
+            "Esha",
+            "Asha",
+            "Farhan",
+            "Bilal"
+          ],
+          "answer": "Esha"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Chetan?",
+          "options": [
+            "Divya",
+            "Esha",
+            "Farhan",
+            "Bilal"
+          ],
+          "answer": "Farhan"
+        },
+        {
+          "prompt": "Who sits between Esha and Divya, going clockwise from Esha?",
+          "options": [
+            "Chetan",
+            "Bilal",
+            "Asha",
+            "Farhan"
+          ],
+          "answer": "Asha"
+        }
+      ],
+      "solverNodes": 69,
+      "difficultyScore": 2.2,
+      "expectedMinutes": 7.1,
+      "difficultyLabel": "Medium"
+    },
+    {
+      "id": "S09",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Esha sits two seats clockwise of Divya.",
+        "Bilal sits next to Esha.",
+        "Chetan sits immediately clockwise of Farhan.",
+        "Farhan sits immediately clockwise of Esha."
+      ],
+      "clueTypes": {
+        "fixed": 3,
+        "adjacency": 1,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Divya",
+        "Bilal",
+        "Esha",
+        "Farhan",
+        "Chetan"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Bilal?",
+          "options": [
+            "Esha",
+            "Asha",
+            "Farhan",
+            "Chetan"
+          ],
+          "answer": "Chetan"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Esha?",
+          "options": [
+            "Chetan",
+            "Farhan",
+            "Asha",
+            "Divya"
+          ],
+          "answer": "Farhan"
+        },
+        {
+          "prompt": "Who sits between Esha and Chetan, going clockwise from Esha?",
+          "options": [
+            "Bilal",
+            "Farhan",
+            "Asha",
+            "Divya"
+          ],
+          "answer": "Farhan"
+        }
+      ],
+      "solverNodes": 219,
+      "difficultyScore": 5.0,
+      "expectedMinutes": 12.0,
+      "difficultyLabel": "Harder"
+    },
+    {
+      "id": "S10",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Divya sits immediately clockwise of Asha.",
+        "Bilal sits immediately clockwise of Farhan.",
+        "Asha sits two seats clockwise of Chetan."
+      ],
+      "clueTypes": {
+        "fixed": 3,
+        "adjacency": 0,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Divya",
+        "Farhan",
+        "Bilal",
+        "Chetan",
+        "Esha"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Chetan?",
+          "options": [
+            "Bilal",
+            "Farhan",
+            "Esha",
+            "Divya"
+          ],
+          "answer": "Divya"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Asha?",
+          "options": [
+            "Divya",
+            "Farhan",
+            "Esha",
+            "Chetan"
+          ],
+          "answer": "Divya"
+        },
+        {
+          "prompt": "Who sits between Chetan and Asha, going clockwise from Chetan?",
+          "options": [
+            "Divya",
+            "Bilal",
+            "Farhan",
+            "Esha"
+          ],
+          "answer": "Esha"
+        }
+      ],
+      "solverNodes": 51,
+      "difficultyScore": 1.47,
+      "expectedMinutes": 5.8,
+      "difficultyLabel": "Easier"
+    },
+    {
+      "id": "S11",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Chetan sits next to Divya.",
+        "Bilal sits immediately clockwise of Chetan.",
+        "Divya sits two seats clockwise of Asha.",
+        "Esha sits immediately clockwise of Asha."
+      ],
+      "clueTypes": {
+        "fixed": 3,
+        "adjacency": 1,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Esha",
+        "Divya",
+        "Chetan",
+        "Bilal",
+        "Farhan"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Esha?",
+          "options": [
+            "Chetan",
+            "Divya",
+            "Farhan",
+            "Bilal"
+          ],
+          "answer": "Bilal"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Bilal?",
+          "options": [
+            "Chetan",
+            "Divya",
+            "Farhan",
+            "Esha"
+          ],
+          "answer": "Farhan"
+        },
+        {
+          "prompt": "Who sits between Farhan and Esha, going clockwise from Farhan?",
+          "options": [
+            "Divya",
+            "Asha",
+            "Chetan",
+            "Bilal"
+          ],
+          "answer": "Asha"
+        }
+      ],
+      "solverNodes": 42,
+      "difficultyScore": 1.0,
+      "expectedMinutes": 5.0,
+      "difficultyLabel": "Easier"
+    },
+    {
+      "id": "S12",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Asha does not sit next to Divya.",
+        "Chetan sits next to Divya.",
+        "Chetan sits next to Esha.",
+        "Bilal does not sit opposite Esha.",
+        "Chetan sits two seats clockwise of Asha."
+      ],
+      "clueTypes": {
+        "fixed": 1,
+        "adjacency": 2,
+        "negative": 2
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Esha",
+        "Chetan",
+        "Divya",
+        "Farhan",
+        "Bilal"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Asha?",
+          "options": [
+            "Divya",
+            "Esha",
+            "Chetan",
+            "Bilal"
+          ],
+          "answer": "Divya"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Farhan?",
+          "options": [
+            "Esha",
+            "Chetan",
+            "Bilal",
+            "Divya"
+          ],
+          "answer": "Bilal"
+        },
+        {
+          "prompt": "Who sits between Esha and Divya, going clockwise from Esha?",
+          "options": [
+            "Asha",
+            "Farhan",
+            "Chetan",
+            "Bilal"
+          ],
+          "answer": "Chetan"
+        }
+      ],
+      "solverNodes": 46,
+      "difficultyScore": 1.22,
+      "expectedMinutes": 5.4,
+      "difficultyLabel": "Easier"
+    },
+    {
+      "id": "S13",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Chetan sits two seats clockwise of Asha.",
+        "Esha sits immediately clockwise of Bilal.",
+        "Esha sits next to Farhan."
+      ],
+      "clueTypes": {
+        "fixed": 2,
+        "adjacency": 1,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Divya",
+        "Chetan",
+        "Bilal",
+        "Esha",
+        "Farhan"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Farhan?",
+          "options": [
+            "Divya",
+            "Bilal",
+            "Chetan",
+            "Esha"
+          ],
+          "answer": "Chetan"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Divya?",
+          "options": [
+            "Bilal",
+            "Asha",
+            "Chetan",
+            "Esha"
+          ],
+          "answer": "Chetan"
+        },
+        {
+          "prompt": "Who sits between Bilal and Farhan, going clockwise from Bilal?",
+          "options": [
+            "Asha",
+            "Esha",
+            "Divya",
+            "Chetan"
+          ],
+          "answer": "Esha"
+        }
+      ],
+      "solverNodes": 67,
+      "difficultyScore": 2.13,
+      "expectedMinutes": 7.0,
+      "difficultyLabel": "Medium"
+    },
+    {
+      "id": "S14",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Farhan sits two seats clockwise of Chetan.",
+        "Esha sits two seats clockwise of Divya.",
+        "Esha sits immediately clockwise of Asha."
+      ],
+      "clueTypes": {
+        "fixed": 3,
+        "adjacency": 0,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Esha",
+        "Chetan",
+        "Bilal",
+        "Farhan",
+        "Divya"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Bilal?",
+          "options": [
+            "Chetan",
+            "Asha",
+            "Divya",
+            "Farhan"
+          ],
+          "answer": "Asha"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Esha?",
+          "options": [
+            "Asha",
+            "Bilal",
+            "Chetan",
+            "Farhan"
+          ],
+          "answer": "Chetan"
+        },
+        {
+          "prompt": "Who sits between Chetan and Farhan, going clockwise from Chetan?",
+          "options": [
+            "Divya",
+            "Bilal",
+            "Esha",
+            "Asha"
+          ],
+          "answer": "Bilal"
+        }
+      ],
+      "solverNodes": 213,
+      "difficultyScore": 4.93,
+      "expectedMinutes": 11.9,
+      "difficultyLabel": "Harder"
+    },
+    {
+      "id": "S15",
+      "family": "circular-seating",
+      "people": [
+        "Asha",
+        "Bilal",
+        "Chetan",
+        "Divya",
+        "Esha",
+        "Farhan"
+      ],
+      "clues": [
+        "Chetan sits immediately clockwise of Farhan.",
+        "Bilal sits immediately clockwise of Chetan.",
+        "Esha sits two seats clockwise of Divya."
+      ],
+      "clueTypes": {
+        "fixed": 3,
+        "adjacency": 0,
+        "negative": 0
+      },
+      "solutionClockwiseFrom": [
+        "Asha",
+        "Esha",
+        "Farhan",
+        "Chetan",
+        "Bilal",
+        "Divya"
+      ],
+      "questions": [
+        {
+          "prompt": "Who sits directly opposite Farhan?",
+          "options": [
+            "Bilal",
+            "Divya",
+            "Asha",
+            "Chetan"
+          ],
+          "answer": "Divya"
+        },
+        {
+          "prompt": "Who sits immediately clockwise of Bilal?",
+          "options": [
+            "Asha",
+            "Divya",
+            "Farhan",
+            "Esha"
+          ],
+          "answer": "Divya"
+        },
+        {
+          "prompt": "Who sits between Esha and Chetan, going clockwise from Esha?",
+          "options": [
+            "Farhan",
+            "Divya",
+            "Asha",
+            "Bilal"
+          ],
+          "answer": "Farhan"
+        }
+      ],
+      "solverNodes": 67,
+      "difficultyScore": 2.13,
+      "expectedMinutes": 7.0,
+      "difficultyLabel": "Medium"
+    }
+  ]
+}
