@@ -54,7 +54,7 @@ function TopChips() {
         {days}
         <span className="hide-mobile"> days to {exam}</span>
       </Link>
-      <Link to="/progress/streak" className="top-chip" aria-label={`Streak ${streak} days. Today ${doneToday ? 'done' : 'not done yet'}.`}>
+      <Link to="/progress/streak" className="top-chip" aria-label={`Streak ${streak} ${streak === 1 ? 'day' : 'days'}. Today ${doneToday ? 'done' : 'not done yet'}.`}>
         <Ring done={doneToday} />
         {streak}
       </Link>

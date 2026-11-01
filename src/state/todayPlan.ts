@@ -69,7 +69,9 @@ export function buildTodayPlan(s: AppState, now: Date): TodayPlan {
     { id: 'vocab', kind: 'extra', label: 'Vocabulary practice', detail: "Today's words", minutes: 10, to: '/learn/vocab', done: s.vocabDays.includes(iso) },
   ];
 
-  const candidates = [...blocks, ...redo, ...extras];
+  // A planner block for the same activity replaces the default item, so nothing shows twice.
+  const planned = new Set(blocks.map((b) => b.to.split('?')[0]));
+  const candidates = [...blocks, ...redo, ...extras.filter((e) => !planned.has(e.to.split('?')[0]))];
   const plan = buildPlan(load, candidates);
   const byId = new Map(candidates.map((c) => [c.id, c]));
   const items = plan.items.slice(0, MAX_ITEMS).map((i) => byId.get(i.id) as PlanItem);

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Check, X } from 'lucide-react';
 import { VOCAB, vocabByWord } from '../content';
@@ -40,7 +41,9 @@ export function hitFor(text: string, surface: string, index: number): VocabHit |
   return { word, surface, sentence, swapped };
 }
 
-function WordCard({ hit, onClose, right }: { hit: VocabHit; onClose: () => void; right: boolean }) {
+const CARD_WIDTH = 320;
+
+function WordCard({ hit, onClose, anchor, cardRef }: { hit: VocabHit; onClose: () => void; anchor: DOMRect; cardRef: RefObject<HTMLDivElement | null> }) {
   const { word } = hit;
   const added = useApp((s) => !!s.vocab[word.word]?.added);
   const add = () => {
@@ -51,7 +54,7 @@ function WordCard({ hit, onClose, right }: { hit: VocabHit; onClose: () => void;
     toast(`Added "${word.word}" to My words`);
   };
   return (
-    <span className={`vw-card${right ? ' right' : ''}`} role="dialog" aria-label={`Meaning of ${word.word}`}>
+    <div className="vw-card" ref={cardRef} role="dialog" aria-label={`Meaning of ${word.word}`} style={placeCard(anchor)}>
       <span className="row-between">
         <span>
           <b className="vw-word">{word.word}</b> <span className="muted">→ {word.simple}</span>
@@ -72,46 +75,67 @@ function WordCard({ hit, onClose, right }: { hit: VocabHit; onClose: () => void;
       ) : (
         <Button onClick={add}>Add to my words</Button>
       )}
-    </span>
+    </div>
   );
 }
 
+/** Keeps the card on screen, on whichever side of the word has more room. Mobile CSS overrides this. */
+function placeCard(a: DOMRect) {
+  const left = Math.max(8, Math.min(a.left, window.innerWidth - CARD_WIDTH - 8));
+  const roomBelow = window.innerHeight - a.bottom - 14;
+  const roomAbove = a.top - 14;
+  if (roomBelow >= 300 || roomBelow >= roomAbove) return { left, top: a.bottom + 6, maxHeight: roomBelow };
+  return { left, bottom: window.innerHeight - a.top + 6, maxHeight: roomAbove };
+}
+
 function Word({ text, surface, index }: { text: string; surface: string; index: number }) {
-  const [open, setOpen] = useState(false);
-  const [right, setRight] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
+  const [anchor, setAnchor] = useState<DOMRect | null>(null);
+  const button = useRef<HTMLButtonElement>(null);
+  const card = useRef<HTMLDivElement>(null);
+  const open = anchor !== null;
   useEffect(() => {
     if (!open) return;
+    const close = () => setAnchor(null);
     const onDown = (e: MouseEvent) => {
-      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+      const t = e.target as Node;
+      if (!card.current?.contains(t) && !button.current?.contains(t)) close();
     };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') {
+        close();
+        button.current?.focus();
+      }
+    };
+    // The card is fixed to the screen, so it follows its word and closes once the word has gone.
+    const onScroll = (e: Event) => {
+      if (card.current?.contains(e.target as Node)) return;
+      const rect = button.current?.getBoundingClientRect();
+      if (!rect || rect.bottom < 0 || rect.top > window.innerHeight) close();
+      else setAnchor(rect);
     };
     document.addEventListener('mousedown', onDown);
     document.addEventListener('keydown', onKey);
+    window.addEventListener('scroll', onScroll, true);
     return () => {
       document.removeEventListener('mousedown', onDown);
       document.removeEventListener('keydown', onKey);
+      window.removeEventListener('scroll', onScroll, true);
     };
   }, [open]);
   const hit = open ? hitFor(text, surface, index) : null;
   return (
-    <span className="vw" ref={ref}>
+    <>
       <button
         type="button"
         className="vw-btn"
+        ref={button}
         aria-expanded={open}
-        onClick={() => {
-          const r = ref.current?.getBoundingClientRect();
-          setRight(!!r && r.left > window.innerWidth / 2);
-          setOpen((o) => !o);
-        }}
+        onClick={(e) => setAnchor(open ? null : e.currentTarget.getBoundingClientRect())}
       >
         {surface}
       </button>
-      {hit && <WordCard hit={hit} right={right} onClose={() => setOpen(false)} />}
-    </span>
+      {hit && anchor && createPortal(<WordCard hit={hit} anchor={anchor} cardRef={card} onClose={() => setAnchor(null)} />, document.body)}
+    </>
   );
 }
 

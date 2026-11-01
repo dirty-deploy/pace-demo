@@ -51,7 +51,17 @@ function fakeAttempt(def: TestDef, at: number, skill: number, seedText: string, 
       const extra = target - spentOn(slowest);
       if (extra > 0 && qs.length) {
         states[qs[0]].seconds += extra;
-        secondsUsed[0] += extra;
+        // Time on that set came out of the rest of the section, so the 40 minutes still holds.
+        const budget = (def.sections[0].minutes ?? 40) * 60;
+        let over = secondsUsed[0] + extra - budget;
+        const others = def.sections[0].questionIds.filter((id) => !qs.includes(id) && states[id].seconds > 0).reverse();
+        for (const id of others) {
+          if (over <= 0) break;
+          const cut = Math.min(over, Math.floor(states[id].seconds / 2));
+          states[id].seconds -= cut;
+          over -= cut;
+        }
+        secondsUsed[0] = def.sections[0].questionIds.reduce((t, id) => t + states[id].seconds, 0);
       }
     }
     for (const setId of ids) {
@@ -122,10 +132,6 @@ export function demoState(now: Date): AppState {
   };
   const daily = fakeAttempt(dailyDef, at(1, 21), 0.68, 'dq1', factor);
   const attempts = [mock, sectionalQa, sectionalDilr, topic, daily];
-  // Keep the DILR replay interesting: the seeded order differs from the recommended one.
-  if (sectionalDilr.dilr) {
-    sectionalDilr.dilr.order = [...sectionalDilr.dilr.recommended].reverse();
-  }
   mock.reviewed = true;
   sectionalQa.reviewed = true;
 

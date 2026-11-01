@@ -70,7 +70,7 @@
 }
 
 .tw-timer.warn {
-  color: var(--warn);
+  color: var(--warn-text);
 }
 
 .tw-body {
@@ -197,7 +197,7 @@
 
 .tw-cap {
   margin-bottom: 12px;
-  color: var(--warn);
+  color: var(--warn-text);
 }
 
 .tw-qno {

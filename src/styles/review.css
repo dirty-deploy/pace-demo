@@ -122,7 +122,7 @@
 }
 
 .rv-chip.rv-correct {
-  color: var(--ok);
+  color: var(--ok-text);
 }
 
 .rv-chip.rv-wrong {
@@ -206,7 +206,7 @@
 
 .rv-options .correct .rv-mark,
 .rv-ok {
-  color: var(--ok);
+  color: var(--ok-text);
   font-weight: 600;
 }
 
@@ -319,10 +319,6 @@
 }
 
 /* Vocabulary in context */
-.vw {
-  position: relative;
-}
-
 .vw-btn {
   padding: 0;
   border: 0;
@@ -334,10 +330,9 @@
 }
 
 .vw-card {
-  position: absolute;
-  z-index: 30;
-  left: 0;
-  top: calc(100% + 6px);
+  position: fixed;
+  z-index: 55;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -349,11 +344,6 @@
   box-shadow: var(--shadow);
   font-size: 14px;
   line-height: 1.5;
-}
-
-.vw-card.right {
-  left: auto;
-  right: 0;
 }
 
 .vw-word {
@@ -393,14 +383,13 @@
 }
 
 @media (max-width: 767px) {
-  .vw-card,
-  .vw-card.right {
-    position: fixed;
-    left: 8px;
+  .vw-card {
+    left: 8px !important;
     right: 8px;
-    top: auto;
-    bottom: 68px;
+    top: auto !important;
+    bottom: 68px !important;
     width: auto;
+    max-height: 60vh !important;
     max-height: 60vh;
     overflow-y: auto;
   }

@@ -14,6 +14,10 @@
   --warn: #b9650f;
   --info: #2f5e8c;
 
+  /* Text-only variants: --warn and --ok fall short of AA for small text in the light theme. */
+  --warn-text: #99520a;
+  --ok-text: #276b47;
+
   --on-primary: #ffffff;
   --primary-hover: #371b3b;
   --focus: rgba(69, 35, 74, 0.35);
@@ -54,6 +58,9 @@
   --bad: #f07a70;
   --warn: #f0a04b;
   --info: #8db7e3;
+
+  --warn-text: #f0a04b;
+  --ok-text: #5cc28c;
 
   --on-primary: #1f1b22;
   --primary-hover: #d7bddc;

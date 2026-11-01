@@ -19,7 +19,7 @@ export const PASSAGES: Passage[] = [
       "The same logic explains a puzzle that seems to defy common sense: why do sellers of nearly identical snacks crowd into one lane? A lone stall must persuade people to make a journey. A hundred stalls together make the journey worthwhile, because the visitor is assured of choice. The crowd is a resource that all the sellers share and none could produce alone. Each vendor fights for the customer's money at the stall, yet cooperates, without ever discussing it, in bringing that customer to the street at all. Rivalry and mutual dependence coexist here, and neither cancels the other.",
       'Trust, which supermarkets purchase through branding and inspection, is produced here by other means. The kitchen stands in full view. The length of a queue is a signal of quality, legible from twenty metres. And the regular stallholder, who stands in the same spot every night, has a reputation that one bad meal could damage. None of this guarantees safety, and the sceptic is right to say so: an open kitchen shows you how a dish is cooked, not where the meat was stored. But it does suggest that these markets are less lawless than they look. Their order is merely informal, and it is easy to mistake the informal for the absent.',
       "This is why well-meaning attempts at improvement deserve some caution. A city that wants cleaner, safer markets will often license the stalls, standardise them and move them to a purpose-built plaza. Some of these reforms are plainly overdue; drains and clean water are no threat to anyone's culture, and they can mitigate risks that no reputation can. Yet each added cost pushes the market a little closer to the restaurant it was an alternative to. Licence fees favour vendors with savings, uniform kiosks discourage improvisation, and a fixed site under a single landlord brings back the very rent that the night market arose to circumvent. What survives may be charming and popular with visitors, but the cook who needed a cheap place to fail has quietly gone elsewhere.",
-      'The measure of a good night market, then, is not how authentic it feels to a visitor. It is how cheaply a person with a little capital and one good recipe can try her luck there. Regulators who keep that question in view can make streets safer without destroying what makes them work.',
+      'The measure of a good night market, then, is not how authentic it feels to a visitor. It is how cheaply a person with a little capital and one good recipe can try their luck there. Regulators who keep that question in view can make streets safer without destroying what makes them work.',
     ],
     questionIds: ['RC1-1', 'RC1-2', 'RC1-3', 'RC1-4'],
   },
@@ -133,7 +133,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     trapIndex: 2,
     explanation:
-      'The passage opens by calling the night market an answer to high rent, and it closes by saying the real test is how cheaply someone can try her luck there. That is the second option. The third option goes too far. The author calls drains and clean water overdue, so the worry is about added cost, not about all regulation.',
+      'The passage opens by calling the night market an answer to high rent, and it closes by saying the real test is how cheaply someone can try their luck there. That is the second option. The third option goes too far. The author calls drains and clean water overdue, so the worry is about added cost, not about all regulation.',
     trap: 'Extreme language trap',
   }),
   rc('RC1', {
@@ -151,7 +151,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 3,
     trapIndex: 0,
     explanation:
-      'The last paragraph sets the test: how cheaply a person with little capital can try her luck. If such cooks are priced out, the reform has failed on the author\'s own terms. The first option is tempting, but the author says plainly that the measure is not how authentic the market feels to a visitor.',
+      'The last paragraph sets the test: how cheaply a person with little capital can try their luck. If such cooks are priced out, the reform has failed on the author\'s own terms. The first option is tempting, but the author says plainly that the measure is not how authentic the market feels to a visitor.',
     trap: 'Reversal trap',
     lessonRef: INFERENCE_LESSON,
   }),

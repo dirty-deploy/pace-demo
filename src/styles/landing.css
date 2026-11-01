@@ -54,7 +54,7 @@
 
 .lp-timer {
   font-size: 13px;
-  color: var(--warn);
+  color: var(--warn-text);
 }
 
 .lp-palette {

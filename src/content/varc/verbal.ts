@@ -81,7 +81,7 @@ export const PARA_JUMBLES: TitaQuestion[] = [
     expectedSeconds: 120,
     sentences: [
       'That feeling is why the crossed-out price matters even when nobody has ever paid it.',
-      'He is really giving the customer a number to compare against.',
+      'They are really giving the customer a number to compare against.',
       'A shopkeeper who marks a shirt at ₹2,000 and then crosses it out for ₹1,200 is not merely announcing a discount.',
       "Once that higher figure is in the buyer's head, the lower one feels like a bargain, whatever the shirt is worth.",
     ],

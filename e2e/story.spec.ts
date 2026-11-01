@@ -75,11 +75,11 @@ test('onboarding → daily set → result → review → planner → streak', as
 
   // Streak updated from what was actually done.
   await page.goto('/#/progress/streak');
-  await expect(page.getByRole('link', { name: /Streak 1 days/ })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Streak 1 day\b/ })).toBeVisible();
   await expect(page.getByText(/2 questions/).first()).toBeVisible();
 
   // Coins came from real actions, and everything survives a reload.
   await page.reload();
-  await expect(page.getByRole('link', { name: /Streak 1 days/ })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Streak 1 day\b/ })).toBeVisible();
   expect(errors).toEqual([]);
 });

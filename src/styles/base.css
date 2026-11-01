@@ -429,7 +429,7 @@ main:focus {
 }
 
 .tag-ok {
-  color: var(--ok);
+  color: var(--ok-text);
 }
 
 .tag-bad {
@@ -437,7 +437,7 @@ main:focus {
 }
 
 .tag-warn {
-  color: var(--warn);
+  color: var(--warn-text);
 }
 
 .tag-primary {

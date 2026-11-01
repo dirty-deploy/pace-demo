@@ -46,6 +46,13 @@ One line per choice. Answers from the person who launched the build are marked (
 - Fonts are bundled with `@fontsource` (same OFL fonts as Google Fonts), using full entry points so that the rupee sign renders.
 - `@playwright/test` was added for the end-to-end test. It doesn't run during `npm run build`.
 
+- Two text-only tokens were added beyond DESIGN_V2.md: `--warn-text` and `--ok-text`. `--warn` measures 3.7 to 4.3:1 and `--ok` 4.4:1 as small text in the light theme, and the same file requires WCAG AA. The original tokens stay in use for fills, borders and bars.
+- The vocabulary card renders in a portal with fixed positioning, because passages scroll in their own box and clipped it. It follows its word while the page scrolls, closes once the word leaves the screen, and limits its height to the room available.
+- Demo redo items come from the seeded DILR attempt through the real redo rule, and the seeded cap hit is real data in that attempt, so Home, Analytics and Replay agree.
+- Planner drag uses plain pointer events rather than `@dnd-kit`; the drill still uses `@dnd-kit`.
+- A planner block for the same activity replaces the matching default plan item, so Home doesn't list the drill twice.
+- Alum notes number 16, above the 12 minimum. Community answers cover 100 questions, above the 60 minimum.
+
 ### Content
 - QA has 73 questions (quota above the 70 minimum), so that seven topics can carry their own 5-question topic test.
 - Every QA question stores its numbers in `params` and computes its answer in `solve()`; `tests/content.test.ts` recomputes all of them. A separate reviewer also re-solved each one from the prompt text alone, in `tests/qa_independent.test.ts`.
