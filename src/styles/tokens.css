@@ -1,0 +1,73 @@
+/* Design tokens from DESIGN_V2.md section 2. Use only these. */
+:root {
+  --bg: #f8f6f2;
+  --surface: #ffffff;
+  --surface-2: #f2efe9;
+  --line: #e6e1d8;
+  --text: #1f1b22;
+  --muted: #6a6370;
+  --primary: #45234a;
+  --primary-soft: #f1e9f2;
+  --gold: #c98a1b;
+  --ok: #2e7d53;
+  --bad: #b93a32;
+  --warn: #b9650f;
+  --info: #2f5e8c;
+
+  --on-primary: #ffffff;
+  --primary-hover: #371b3b;
+  --focus: rgba(69, 35, 74, 0.35);
+  --shadow: 0 1px 2px rgba(31, 27, 34, 0.06), 0 4px 12px rgba(31, 27, 34, 0.04);
+
+  /* Planner tints: four muted tints derived from the palette. */
+  --tint-varc: #e6eef6;
+  --tint-dilr: #f1e9f2;
+  --tint-qa: #e4f1ea;
+  --tint-revision: #f7eedd;
+
+  /* Five shades of gold for the streak calendar. */
+  --heat-1: #f6ead2;
+  --heat-2: #ecd3a3;
+  --heat-3: #dcb064;
+  --heat-4: #c98a1b;
+
+  --font-ui: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-title: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  --radius: 12px;
+  --radius-btn: 10px;
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #141216;
+  --surface: #1c1a1f;
+  --surface-2: #24212a;
+  --line: #2f2b35;
+  --text: #eeeaf0;
+  --muted: #a39ca8;
+  --primary: #c9a6cf;
+  --primary-soft: #2d2333;
+  --gold: #e3ae4f;
+  --ok: #5cc28c;
+  --bad: #f07a70;
+  --warn: #f0a04b;
+  --info: #8db7e3;
+
+  --on-primary: #1f1b22;
+  --primary-hover: #d7bddc;
+  --focus: rgba(201, 166, 207, 0.35);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  --tint-varc: #1f2a36;
+  --tint-dilr: #2d2333;
+  --tint-qa: #1e2e26;
+  --tint-revision: #322a1b;
+
+  --heat-1: #3a2f1c;
+  --heat-2: #5e4a22;
+  --heat-3: #9b7630;
+  --heat-4: #e3ae4f;
+  color-scheme: dark;
+}

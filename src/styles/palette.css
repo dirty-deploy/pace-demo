@@ -1,0 +1,59 @@
+/* Question palette states, shared by the test window, review and the landing preview.
+   Each state has its own shape or letter, so colour is never the only signal. */
+.pal {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.pal-sm {
+  width: 18px;
+  height: 16px;
+  flex: none;
+}
+
+.pal i {
+  position: absolute;
+  right: 2px;
+  top: 0;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.pal-not-answered {
+  background: var(--surface-2);
+  border-color: var(--bad);
+  border-bottom-width: 3px;
+}
+
+.pal-answered {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: var(--surface);
+  border-radius: 6px 6px 14px 14px;
+}
+
+.pal-marked {
+  background: var(--info);
+  border-color: var(--info);
+  color: var(--surface);
+  border-radius: 50%;
+}
+
+.pal-answered-marked {
+  background: var(--info);
+  border-color: var(--ok);
+  border-width: 3px;
+  color: var(--surface);
+  border-radius: 50%;
+}

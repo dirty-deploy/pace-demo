@@ -1,0 +1,240 @@
+/* Notes page: alum list, reading layout, My notes. */
+.note-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: end;
+}
+
+.note-filters-mine {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto;
+}
+
+.note-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card.note-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.note-card-title {
+  color: inherit;
+}
+
+.note-card-title:hover {
+  text-decoration: none;
+}
+
+/* The title link covers the card; the author row and upvote sit above it. */
+.note-card-title::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+
+.note-card-title:focus-visible {
+  outline: none;
+}
+
+.note-card-title:focus-visible::after {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.note-card-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.note-card-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* The tooltip hangs from the whole row, so it stays on screen at 390 px. */
+.note-author {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  min-width: 0;
+}
+
+.note-author .sample {
+  position: static;
+}
+
+.note-author .tip {
+  left: 0;
+  max-width: 100%;
+}
+
+/* ---- Reading ---- */
+.note-article {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.note-article:focus,
+.note-article:focus-visible {
+  outline: none;
+}
+
+.btn.note-back {
+  margin-left: -8px;
+}
+
+.note-byline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Stays in view so a selection far down the note can still be highlighted. */
+.note-tools {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+/* 68ch counts Onest's wide zero and runs to about 95 letters, so hold the line in em instead. */
+.reading.note-body {
+  --note-highlight: var(--primary-soft);
+  max-width: 28.5em;
+}
+
+.note-para + .note-para {
+  margin-top: 16px;
+}
+
+.note-body mark {
+  padding: 1px 0;
+  border-bottom: 1px solid var(--primary);
+  background: var(--note-highlight);
+  color: inherit;
+}
+
+/* Shown only to keyboard users, who can't drag a selection. */
+.btn.note-para-hl {
+  margin-top: 4px;
+  user-select: none;
+}
+
+.btn.note-para-hl:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+.card.note-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.note-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.note-highlight p {
+  padding-left: 12px;
+  border-left: 2px solid var(--primary);
+}
+
+/* ---- My notes ---- */
+.mynote {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mynote-text {
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.mynote-text.clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+}
+
+.mynote .btn-ghost {
+  margin-left: -8px;
+}
+
+.mynote .row .btn-ghost + .btn-ghost {
+  margin-left: 0;
+}
+
+.mynote-meta {
+  position: relative;
+}
+
+.mynote-meta .sample {
+  position: static;
+}
+
+.mynote-meta .tip {
+  left: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 899px) {
+  .note-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .note-filters,
+  .note-filters-mine {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media print {
+  .note-tools,
+  .btn.note-back {
+    display: none;
+  }
+}

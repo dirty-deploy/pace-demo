@@ -1,0 +1,229 @@
+/* Rewards: balance, spend cards, Meridian form, rules, history, printable sheet. */
+.rw-coin {
+  margin-right: 8px;
+  vertical-align: -4px;
+}
+
+.rw-spend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rw-spend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+}
+
+.rw-spend .btn {
+  align-self: flex-start;
+}
+
+.rw-spend-title {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Keeps the buttons in line across the three cards. */
+.rw-spend-status {
+  flex: 1 1 auto;
+}
+
+.rw-sheet-slot {
+  scroll-margin-top: 16px;
+}
+
+.rw-sheet-slot:empty {
+  display: none;
+}
+
+.rw-sheet-grid {
+  margin-top: 16px;
+  columns: 3 240px;
+  column-gap: 24px;
+}
+
+.rw-sheet-group {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+.rw-sheet-group h3 {
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.rw-sheet-group dl > div {
+  padding: 3px 0;
+}
+
+.rw-sheet-group dt {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.rw-sheet-group dd {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rw-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 16px;
+  max-width: 640px;
+}
+
+.rw-result {
+  font-weight: 500;
+}
+
+.rw-coupons ul {
+  border-top: 1px solid var(--line);
+}
+
+.rw-coupons li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.rw-coupons code {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  user-select: all;
+}
+
+.rw-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.rw-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.table th.rw-num {
+  text-align: right;
+}
+
+.rw-history li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.rw-history li:last-child {
+  border-bottom: 0;
+}
+
+.rw-history .small {
+  display: block;
+}
+
+.rw-history b {
+  font-weight: 500;
+}
+
+@media (max-width: 1099px) {
+  .rw-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 899px) {
+  .rw-spend-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .rw-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Printing with the sheet open gives only the sheet, in dark ink on paper in either theme. */
+@media print {
+  [data-theme='dark'] {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --line: #e6e1d8;
+    --text: #1f1b22;
+    --muted: #6a6370;
+    color-scheme: light;
+  }
+
+  .rw-printing {
+    display: block;
+  }
+
+  .rw-printing > :not(.rw-sheet-slot) {
+    display: none !important;
+  }
+
+  .subnav {
+    display: none !important;
+  }
+
+  .shell {
+    display: block;
+  }
+
+  .page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .rw-sheet {
+    padding: 0;
+    border: 0;
+  }
+
+  .rw-sheet-grid {
+    margin-top: 8px;
+    columns: 3;
+    column-gap: 16px;
+    font-size: 11px;
+  }
+
+  .rw-sheet-group {
+    margin-bottom: 8px;
+  }
+
+  .rw-sheet-group dl > div {
+    padding: 1px 0;
+  }
+
+  .rw-sheet-group h3 {
+    font-size: 12px;
+  }
+
+  .rw-sheet-group dt {
+    font-size: 9px;
+  }
+
+  .rw-sheet-group dd {
+    font-size: 10px;
+  }
+
+  .credit {
+    padding: 8px 0 0;
+    font-size: 9px;
+  }
+}

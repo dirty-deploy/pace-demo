@@ -10,3 +10,6 @@ reference/inspiration/
 
 .vercel
 .env*
+Pace_v2_Update/
+test-results/
+playwright-report/

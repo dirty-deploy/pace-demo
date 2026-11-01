@@ -1,0 +1,39 @@
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.result > .btn {
+  align-self: flex-start;
+}
+
+.result .card-title {
+  margin-bottom: 8px;
+}
+
+.share-card {
+  padding: 16px;
+  margin-bottom: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.share-card b {
+  font-weight: 500;
+}
+
+.share-score {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .result {
+    padding: 24px 16px;
+  }
+}

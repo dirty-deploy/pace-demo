@@ -1,0 +1,193 @@
+/* Streak: summary, month calendar, shields, activity log. */
+.st-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.st-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.st-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+}
+
+.st-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.st-month-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.st-icon-btn {
+  width: 40px;
+  padding: 0;
+}
+
+/* ---- Calendar ---- */
+.st-calendar {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+
+.st-calendar th {
+  padding: 0 0 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.st-calendar td {
+  padding: 0;
+}
+
+.st-day {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  aspect-ratio: 1;
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.st-day.is-outside {
+  opacity: 0.55;
+}
+
+.st-day.is-today {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+.st-shield {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+}
+
+.st-heat-0 {
+  background: var(--surface);
+}
+
+.st-heat-1 {
+  background: var(--heat-1);
+  border-color: transparent;
+}
+
+.st-heat-2 {
+  background: var(--heat-2);
+  border-color: transparent;
+}
+
+.st-heat-3 {
+  background: var(--heat-3);
+  border-color: transparent;
+}
+
+.st-heat-4 {
+  background: var(--heat-4);
+  border-color: transparent;
+}
+
+/* Dark theme: the top shade needs dark text, and the one below it passes with neither colour. */
+[data-theme='dark'] .st-day.st-heat-4 {
+  color: var(--on-primary);
+}
+
+[data-theme='dark'] .st-day.st-heat-3 .num {
+  margin: -1px -3px;
+  padding: 1px 3px;
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+.st-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.st-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.st-swatch {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+/* ---- Shields ---- */
+.st-shields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* ---- Log ---- */
+.st-log {
+  margin-top: 8px;
+}
+
+.st-log li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.st-log li:last-child {
+  border-bottom: 0;
+}
+
+@media (max-width: 899px) {
+  .st-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .st-page,
+  .st-columns,
+  .st-side {
+    gap: 16px;
+  }
+  .st-calendar {
+    border-spacing: 2px;
+  }
+  .st-day {
+    padding: 2px 4px;
+    font-size: 12px;
+  }
+  .st-shield {
+    right: 2px;
+    bottom: 2px;
+  }
+}

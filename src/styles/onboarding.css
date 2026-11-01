@@ -1,0 +1,31 @@
+.onb {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 520px;
+  margin: 32px auto;
+}
+
+.onb-step {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 0;
+  min-height: 280px;
+}
+
+.onb-actions {
+  margin-top: auto;
+}
+
+.onb-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.onb-fieldset legend {
+  padding: 0 0 8px;
+  font-size: 13px;
+  font-weight: 500;
+}

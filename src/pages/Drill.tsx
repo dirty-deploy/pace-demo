@@ -1,159 +1,219 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DndContext, KeyboardSensor, PointerSensor, closestCenter, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core';
-import { SortableContext, arrayMove, rectSortingStrategy, sortableKeyboardCoordinates, useSortable } from '@dnd-kit/sortable';
+import { SortableContext, arrayMove, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, GripVertical } from 'lucide-react';
-import { Btn, Eyebrow } from '../components/ui';
-import { useStore } from '../state/store';
-import { clueMix } from '../logic/reasons';
+import { ArrowDown, ArrowUp, GripVertical } from 'lucide-react';
+import setsData from '../data/sample_sets.json';
+import { Button, Tag } from '../components/ui';
 import { mmss } from '../logic/cap';
+import { kendall, recommendedOrder, startCostMinutes } from '../logic/ranking';
+import { clueMix, reasonFor, setLetter } from '../logic/reasons';
+import { seededRandom, shuffled } from '../logic/rng';
 import type { PuzzleSet } from '../logic/types';
+import { newId } from '../state/actions';
+import { getState, update } from '../state/store';
+import { startAttempt } from '../state/testEngine';
+import type { TestDef } from '../state/schema';
+import { setById } from '../content';
+import '../styles/drill.css';
 
+const SETS = setsData.sets as unknown as PuzzleSet[];
 const DRILL_SECONDS = 240;
-const GLOW = [1, 0.72, 0.48, 0.3, 0.16];
 
-function Slab({ set, rank, total, code, onMove }: { set: PuzzleSet; rank: number; total: number; code: string; onMove: (dir: -1 | 1) => void }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: set.id, transition: { duration: 250, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' } });
+/** Five sets with at least one Easier and one Harder, as in v1. */
+function pickRound(seed: string): PuzzleSet[] {
+  const rand = seededRandom(seed);
+  for (let i = 0; i < 200; i++) {
+    const pick = shuffled(SETS, rand).slice(0, 5);
+    const labels = pick.map((s) => s.difficultyLabel);
+    if (labels.includes('Easier') && labels.includes('Harder')) return pick;
+  }
+  return SETS.slice(0, 5);
+}
+
+function Row({ set, code, rank, total, onMove }: { set: PuzzleSet; code: string; rank: number; total: number; onMove: (d: -1 | 1) => void }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: set.id });
   const style = { transform: CSS.Transform.toString(transform), transition, zIndex: isDragging ? 5 : undefined };
-  const glow = GLOW[rank] ?? 0.12;
   return (
-    <li ref={setNodeRef} style={style} className={`slab-wrap${isDragging ? ' is-dragging' : ''}`}>
-      <div className="slab" style={{ ['--glow' as string]: glow }}>
-        <div className="slab-top" aria-hidden />
-        <div className="slab-face">
-          <div className="slab-head">
-            <h3>Set {code}</h3>
-            <span className="slab-rank tnum" aria-label={`Position ${rank + 1} of ${total}`}>{rank + 1}</span>
-          </div>
-          <p className="slab-family">Circular seating, 6 people</p>
-          <p className="slab-mix">{clueMix(set)}</p>
-          <p className="slab-q">{set.questions.length} questions</p>
-          <div className="slab-ctl">
-            <button type="button" className="grip" aria-label={`Drag Set ${code}. Or press space, then the arrow keys.`} {...attributes} {...listeners}>
-              <GripVertical size={18} strokeWidth={1.5} aria-hidden />
-            </button>
-            <span className="mv">
-              <button type="button" className="icon-btn" onClick={() => onMove(-1)} disabled={rank === 0} aria-label={`Move Set ${code} earlier`}>
-                <ArrowLeft size={18} strokeWidth={1.5} className="ic-h" aria-hidden />
-                <ArrowUp size={18} strokeWidth={1.5} className="ic-v" aria-hidden />
-              </button>
-              <button type="button" className="icon-btn" onClick={() => onMove(1)} disabled={rank === total - 1} aria-label={`Move Set ${code} later`}>
-                <ArrowRight size={18} strokeWidth={1.5} className="ic-h" aria-hidden />
-                <ArrowDown size={18} strokeWidth={1.5} className="ic-v" aria-hidden />
-              </button>
-            </span>
-          </div>
-        </div>
-        <div className="slab-glow" aria-hidden />
-      </div>
+    <li ref={setNodeRef} style={style} className={`drill-row${isDragging ? ' dragging' : ''}`}>
+      <button type="button" className="icon-btn drill-grip" aria-label={`Drag Set ${code}. Or press space, then the arrow keys.`} {...attributes} {...listeners}>
+        <GripVertical size={18} strokeWidth={1.5} aria-hidden />
+      </button>
+      <span className="drill-rank num">{rank + 1}</span>
+      <span className="grow">
+        <b>Set {code}</b>
+        <span className="small muted">
+          Circular seating, 6 people · {clueMix(set)} · {set.questions.length} questions
+        </span>
+      </span>
+      <button type="button" className="icon-btn" onClick={() => onMove(-1)} disabled={rank === 0} aria-label={`Move Set ${code} up`}>
+        <ArrowUp size={18} strokeWidth={1.5} aria-hidden />
+      </button>
+      <button type="button" className="icon-btn" onClick={() => onMove(1)} disabled={rank === total - 1} aria-label={`Move Set ${code} down`}>
+        <ArrowDown size={18} strokeWidth={1.5} aria-hidden />
+      </button>
     </li>
   );
 }
 
-export default function Drill() {
-  const s = useStore();
+type Done = { order: string[]; auto: boolean };
+
+function Result({ round, codes, done, onNew }: { round: PuzzleSet[]; codes: Record<string, string>; done: Done; onNew: () => void }) {
   const nav = useNavigate();
-  const [order, setOrder] = useState<string[]>(s.round.ids);
+  const rec = recommendedOrder(round);
+  const recIds = rec.map((x) => x.id);
+  const agree = kendall(done.order, recIds);
+  const yourFirst = round.find((x) => x.id === done.order[0]) as PuzzleSet;
+  const cost = startCostMinutes(yourFirst, rec[0]);
+
+  const startTop = () => {
+    const set = setById(rec[0].id);
+    if (!set) return;
+    const def: TestDef = {
+      id: newId('set'),
+      type: 'redo',
+      name: `Capped set: Set ${codes[rec[0].id]}`,
+      mode: 'practice',
+      capped: true,
+      sections: [{ section: 'DILR', name: 'DILR', minutes: null, questionIds: set.questionIds }],
+    };
+    startAttempt(def);
+    nav(`/test/${def.id}`);
+  };
+
+  return (
+    <div className="stack">
+      {done.auto && <p className="small muted">Time's up. We used your current order.</p>}
+      <div className="card stack">
+        <h2 className="card-title">
+          Your order agreed with the recommended order on {agree.concordant} of {agree.pairs} pairs of sets.
+        </h2>
+        <p className="small muted">{cost > 0 ? `Your first pick would likely cost about ${cost} more minutes than the recommended start.` : 'Your first pick matches the quickest start.'} This is an estimate from solver effort, not from timed students.</p>
+      </div>
+      <div className="drill-cols">
+        <section className="card">
+          <h3 className="section-title">Your order</h3>
+          <ol className="drill-list-plain">
+            {done.order.map((id, i) => (
+              <li key={id}>
+                <span className="num muted">{i + 1}</span> Set {codes[id]} {recIds[i] === id && <Tag tone="ok">Same place</Tag>}
+              </li>
+            ))}
+          </ol>
+        </section>
+        <section className="card">
+          <h3 className="section-title">Recommended order</h3>
+          <ol className="drill-list-plain">
+            {rec.map((x, i) => (
+              <li key={x.id}>
+                <span className="num muted">{i + 1}</span> Set {codes[x.id]}
+                <span className="small muted drill-reason">{reasonFor(x)}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </div>
+      <div className="row">
+        <Button variant="primary" onClick={startTop}>
+          Try the recommended first set
+        </Button>
+        <Button onClick={onNew}>New round</Button>
+      </div>
+    </div>
+  );
+}
+
+export default function Drill() {
+  const [seed, setSeed] = useState(() => newId('round'));
+  const round = useMemo(() => pickRound(seed), [seed]);
+  const codes = useMemo(() => Object.fromEntries(round.map((s, i) => [s.id, setLetter(i)])), [round]);
+  const [order, setOrder] = useState(() => round.map((s) => s.id));
   const [left, setLeft] = useState(DRILL_SECONDS);
+  const [done, setDone] = useState<Done | null>(null);
   const [note, setNote] = useState('');
-  const [timeUp, setTimeUp] = useState(false);
-  const deadline = useRef(Date.now() + DRILL_SECONDS * 1000);
   const orderRef = useRef(order);
   orderRef.current = order;
-  const done = useRef(false);
-  const sRef = useRef(s);
-  sRef.current = s;
 
-  // A new round resets the working order and the clock.
-  useEffect(() => {
-    setOrder(s.round.ids);
-    deadline.current = Date.now() + DRILL_SECONDS * 1000;
-    setLeft(DRILL_SECONDS);
-    setTimeUp(false);
-    done.current = false;
-  }, [s.round]);
-
-  const submit = useCallback(
-    (auto: boolean) => {
-      if (done.current) return;
-      done.current = true;
-      sRef.current.submitDrill(orderRef.current, auto);
-      nav('/drill/result');
-    },
-    [nav],
-  );
+  const finish = (auto: boolean) => {
+    const final = orderRef.current;
+    const recommended = recommendedOrder(round).map((s) => s.id);
+    const tau = kendall(final, recommended).tau;
+    update((s) => ({ ...s, drills: [...s.drills, { id: newId('d'), at: Date.now(), order: final, recommended, tau, setIds: round.map((x) => x.id) }] }));
+    setDone({ order: final, auto });
+  };
+  const finishRef = useRef(finish);
+  finishRef.current = finish;
 
   useEffect(() => {
+    if (done) return;
     const id = window.setInterval(() => {
-      const l = Math.max(0, Math.ceil((deadline.current - Date.now()) / 1000));
-      setLeft(l);
-      if (l === 0) {
-        setTimeUp(true);
-        window.clearInterval(id);
-        window.setTimeout(() => submit(true), 1400);
-      }
-    }, 250);
+      setLeft((x) => {
+        if (x <= 1) {
+          window.clearInterval(id);
+          finishRef.current(true);
+          return 0;
+        }
+        return x - 1;
+      });
+    }, 1000);
     return () => window.clearInterval(id);
-  }, [submit, s.round]);
+  }, [done, seed]);
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
-  );
-  const sets = order.map((id) => s.getSet(id)!);
-  const codeOf = (id: string) => s.codeOf(id) ?? '?';
+  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 4 } }), useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }));
 
-  const move = (id: string, dir: -1 | 1) => {
-    const i = order.indexOf(id);
-    const j = i + dir;
-    if (j < 0 || j >= order.length) return;
-    setOrder(arrayMove(order, i, j));
-    setNote(`Set ${codeOf(id)} moved to position ${j + 1} of ${order.length}.`);
-  };
   const onDragEnd = (e: DragEndEvent) => {
-    if (!e.over || e.active.id === e.over.id) return;
-    const from = order.indexOf(String(e.active.id));
-    const to = order.indexOf(String(e.over.id));
+    const { active, over } = e;
+    if (!over || active.id === over.id) return;
+    const from = order.indexOf(String(active.id));
+    const to = order.indexOf(String(over.id));
     setOrder(arrayMove(order, from, to));
-    setNote(`Set ${codeOf(String(e.active.id))} moved to position ${to + 1} of ${order.length}.`);
+    setNote(`Set ${codes[String(active.id)]} moved to position ${to + 1}.`);
   };
 
-  const warn = left <= 60;
-  return (
-    <div className="drill">
-      <div className="watermark" aria-hidden>ROUND {s.round.n}</div>
-      <header className="drill-head">
-        <div>
-          <Eyebrow>Round {s.round.n} · the pick</Eyebrow>
-          <h1 className="display">Pick your order</h1>
-          <p className="lede">Rank these sets in the order you'd attempt them. You're judging from the preview only, as you would in the exam's first minutes.</p>
-        </div>
-        <div className={`clock${warn ? ' warn' : ''}`} role="timer" aria-label="Time left in the drill">
-          <span className="clock-num tnum">{mmss(left)}</span>
-          <span className="clock-label">left to rank</span>
-        </div>
-      </header>
+  const move = (i: number, d: -1 | 1) => {
+    const next = arrayMove(order, i, i + d);
+    setOrder(next);
+    setNote(`Set ${codes[order[i]]} moved to position ${i + d + 1}.`);
+  };
 
+  const newRound = () => {
+    const next = newId('round');
+    setSeed(next);
+    setOrder(pickRound(next).map((s) => s.id));
+    setLeft(DRILL_SECONDS);
+    setDone(null);
+  };
+
+  if (done) return <Result round={round} codes={codes} done={done} onNew={newRound} />;
+
+  const pace = getState().pace.length;
+  return (
+    <div className="stack">
+      <div className="row-between">
+        <p className="muted">Five sets, four minutes. Skim the clue mix and rank them in the order you would attempt them.</p>
+        <span className={`drill-timer num${left <= 60 ? ' warn' : ''}`} role="timer" aria-label={`${mmss(left)} left`}>
+          {mmss(left)}
+        </span>
+      </div>
+      <p className="sr-only" aria-live="polite">
+        {note}
+      </p>
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEnd}>
-        <SortableContext items={order} strategy={rectSortingStrategy}>
-          <ol className="slabs" aria-label="Sets, first choice at the start">
-            {sets.map((set, i) => (
-              <Slab key={set.id} set={set} rank={i} total={sets.length} code={codeOf(set.id)} onMove={(d) => move(set.id, d)} />
+        <SortableContext items={order} strategy={verticalListSortingStrategy}>
+          <ol className="drill-list">
+            {order.map((id, i) => (
+              <Row key={id} set={round.find((s) => s.id === id) as PuzzleSet} code={codes[id]} rank={i} total={order.length} onMove={(d) => move(i, d)} />
             ))}
           </ol>
         </SortableContext>
       </DndContext>
-
-      <div className="drill-foot">
-        <p className="hint">First in the row is the set you'd start with. Glow shows your current rank, not difficulty.</p>
-        <Btn variant="primary" onClick={() => submit(false)}>
-          Submit order
-        </Btn>
+      <div className="row">
+        <Button variant="primary" onClick={() => finish(false)}>
+          Lock in my order
+        </Button>
+        <span className="small muted">{pace ? 'Your caps use your own pace so far.' : 'Your caps start from the expected time.'}</span>
       </div>
-      {timeUp && <p className="timeup" role="status">Time's up, we used your current order.</p>}
-      <p className="sr-only" aria-live="polite">{note}</p>
-      <p className="sr-only" aria-live="assertive">{warn && left === 60 ? 'One minute left.' : ''}</p>
     </div>
   );
 }

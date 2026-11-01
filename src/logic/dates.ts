@@ -1,4 +1,5 @@
 export const EXAM_DATE = '2026-11-29';
+export const XAT_DATE = '2027-01-03';
 
 const MS_DAY = 86_400_000;
 

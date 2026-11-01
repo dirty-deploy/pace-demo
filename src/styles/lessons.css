@@ -1,0 +1,658 @@
+/* Lessons list and lesson player. Slide type scales with the stage through container units. */
+
+/* ---- List ---- */
+.ll-topics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ll-topic {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ll-list {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ll-list > li {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.ll-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 20px;
+}
+
+.ll-card-head {
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.ll-card .progress {
+  margin-top: auto;
+}
+
+.ll-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding-bottom: 8px;
+}
+
+.ll-meta .row {
+  gap: 4px;
+}
+
+/* ---- Player layout ---- */
+.lp {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lp-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 24px;
+}
+
+.lp-player {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* ---- Stage ---- */
+.lp-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  container-type: inline-size;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.lp-slide {
+  position: absolute;
+  inset: 0;
+}
+
+.lp-slide-count {
+  position: absolute;
+  right: 2.4cqw;
+  bottom: 1.6cqw;
+  color: var(--muted);
+  font-size: clamp(10px, 1.8cqw, 12px);
+}
+
+.sl {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 1.4cqw, 12px);
+  height: 100%;
+  padding: clamp(10px, 3cqw, 24px) clamp(14px, 4cqw, 32px) clamp(14px, 4cqw, 30px);
+  font-size: clamp(13px, 3cqw, 20px);
+  line-height: 1.35;
+}
+
+.sl h2 {
+  flex: none;
+  font-size: clamp(14px, 3.4cqw, 24px);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.sl-title {
+  justify-content: center;
+  gap: clamp(6px, 2cqw, 16px);
+}
+
+.sl-title h2 {
+  max-width: 24ch;
+  color: var(--primary);
+  font-size: clamp(18px, 5cqw, 36px);
+}
+
+.sl-title p {
+  color: var(--muted);
+  font-size: clamp(13px, 2.8cqw, 19px);
+}
+
+.sl-lead {
+  margin: 0;
+  padding-left: clamp(8px, 1.8cqw, 14px);
+  border-left: 2px solid var(--primary);
+}
+
+.sl-given {
+  color: var(--muted);
+}
+
+.sl-list,
+.sl-steps,
+.sl-verdicts {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3px, 1.2cqw, 10px);
+}
+
+.sl-list li[data-on],
+.sl-steps li[data-on] {
+  transition: opacity 200ms var(--ease);
+}
+
+.sl-list li[data-on='false'],
+.sl-steps li[data-on='false'] {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.sl-numbered li {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(6px, 1.4cqw, 12px);
+}
+
+.sl-n {
+  flex: none;
+  color: var(--primary);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.sl-steps li {
+  padding: clamp(1px, 0.4cqw, 4px) clamp(6px, 1.2cqw, 10px);
+  border-radius: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.sl-steps li[data-now='true'] {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.sl-verdicts li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: clamp(26px, 6cqw, 44px);
+  padding: 2px clamp(6px, 1.2cqw, 10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.sl-verdicts li[data-out='true'] > span:first-child {
+  color: var(--muted);
+}
+
+.sl-verdicts .tag {
+  flex: none;
+  background: var(--surface-2);
+  font-size: clamp(11px, 2cqw, 13px);
+  animation: fade 200ms var(--ease);
+}
+
+.sl-fig {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.lp-diagram {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lp-diagram text {
+  font-family: var(--font-ui);
+  font-variant-numeric: tabular-nums;
+}
+
+.dg-fade {
+  transition: opacity 200ms var(--ease);
+}
+
+.sl-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(12px, 2.4cqw, 16px);
+  font-variant-numeric: tabular-nums;
+}
+
+.sl-table th {
+  color: var(--muted);
+  font-weight: 500;
+  text-align: right;
+}
+
+.sl-table th,
+.sl-table td {
+  padding: clamp(1px, 0.6cqw, 5px) clamp(4px, 1.2cqw, 10px);
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  transition: background 200ms var(--ease);
+}
+
+.sl-table th:first-child,
+.sl-table td:first-child {
+  text-align: left;
+}
+
+.sl-table [data-on='true'] {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* ---- Controls ---- */
+.lp-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lp-scrub {
+  position: relative;
+  height: 24px;
+  cursor: pointer;
+  touch-action: none;
+  border-radius: 4px;
+}
+
+.lp-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+.lp-track > i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.lp-track > b {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 12px;
+  margin-left: -1px;
+  background: var(--muted);
+}
+
+.lp-thumb {
+  position: absolute;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  background: var(--primary);
+}
+
+.lp-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lp-play {
+  min-width: 104px;
+}
+
+.lp-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: var(--radius-btn);
+  background: none;
+  color: var(--primary);
+  cursor: pointer;
+  transition: background 150ms var(--ease);
+}
+
+.lp-icon:hover {
+  background: var(--primary-soft);
+}
+
+.lp-time {
+  font-size: 14px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.lp-speed {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.lp-speed button {
+  min-width: 44px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background 150ms var(--ease), color 150ms var(--ease);
+}
+
+.lp-speed button:hover {
+  border-color: var(--line);
+}
+
+.lp-speed button[aria-pressed='true'] {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* ---- Transcript ---- */
+.lp-transcript {
+  position: relative;
+  min-width: 0;
+}
+
+/* Absolute, so the panel takes the player's height instead of setting it. */
+.lp-tx {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.lp-tx-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.lp-search {
+  position: relative;
+}
+
+.lp-search svg {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  color: var(--muted);
+}
+
+.lp-search .input {
+  padding-left: 36px;
+}
+
+.lp-tx-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.lp-tx-none {
+  padding: 8px;
+}
+
+.lp-line,
+.lp-chapter {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 8px;
+  width: 100%;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms var(--ease);
+}
+
+.lp-line {
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.lp-line:hover,
+.lp-chapter:hover {
+  background: var(--surface-2);
+}
+
+.lp-line[aria-current='true'],
+.lp-chapter[aria-current='true'] {
+  background: var(--primary-soft);
+}
+
+.lp-line mark {
+  background: none;
+  color: var(--primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+.lp-ts {
+  padding-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Chapters ---- */
+.lp-chapters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 24px;
+}
+
+.lp-chapter {
+  align-items: baseline;
+  padding: 8px;
+  font-size: 15px;
+}
+
+/* ---- Practice ---- */
+.lp-q {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lp-q-para {
+  max-width: 68ch;
+  font-size: 17px;
+  white-space: pre-line;
+}
+
+.lp-q-sentences {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 68ch;
+  font-size: 17px;
+}
+
+.lp-q-sentences li {
+  display: flex;
+  gap: 8px;
+}
+
+.lp-q-prompt {
+  font-weight: 500;
+}
+
+.lp-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lp-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-btn);
+  background: var(--surface);
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms var(--ease), border-color 150ms var(--ease);
+}
+
+.lp-option:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+
+.lp-option:disabled {
+  cursor: default;
+}
+
+.lp-option-letter {
+  flex: none;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.lp-option-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  font-size: 13px;
+}
+
+.lp-option[data-state='right'] {
+  border-color: var(--ok);
+}
+
+.lp-option[data-state='right'] .lp-option-note,
+.lp-option[data-state='right'] .lp-option-letter {
+  color: var(--ok);
+}
+
+.lp-option[data-state='wrong'] {
+  border-color: var(--bad);
+}
+
+.lp-option[data-state='wrong'] .lp-option-note,
+.lp-option[data-state='wrong'] .lp-option-letter {
+  color: var(--bad);
+}
+
+.lp-tita {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 320px;
+}
+
+/* The live region stays mounted but adds no gap until there is feedback in it. */
+.lp-q [aria-live]:empty {
+  display: none;
+}
+
+.lp-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  animation: fade 200ms var(--ease);
+}
+
+.lp-feedback-head {
+  font-weight: 500;
+}
+
+.lp-feedback[data-right='true'] .lp-feedback-head {
+  color: var(--ok);
+}
+
+.lp-feedback[data-right='false'] .lp-feedback-head {
+  color: var(--bad);
+}
+
+/* ---- Narrower screens ---- */
+@media (max-width: 959px) {
+  .lp-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lp-tx {
+    position: static;
+    height: 360px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ll-topics,
+  .lp-chapters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lp-stage {
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+    border-inline: 0;
+    border-radius: 0;
+  }
+  .lp-speed {
+    margin-left: 0;
+  }
+}
+
+@media (pointer: coarse) {
+  .lp-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .lp-speed button {
+    height: 44px;
+  }
+  .lp-scrub {
+    height: 32px;
+  }
+  .lp-track {
+    top: 13px;
+  }
+  .lp-thumb {
+    top: 9px;
+  }
+}

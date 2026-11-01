@@ -1,126 +1,164 @@
-import { useEffect, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
-
-type Variant = 'primary' | 'secondary';
-
-type BtnProps = {
-  variant?: Variant;
-  to?: string;
-  icon?: ReactNode | false;
-  small?: boolean;
-  children: ReactNode;
-  className?: string;
-} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>;
-
-/** The two pill buttons: gold primary (one per screen) and dark-glass secondary with a travelling beam. */
-export function Btn({ variant = 'secondary', to, icon, small, children, className = '', ...rest }: BtnProps) {
-  const cls = `btn btn-${variant}${small ? ' btn-small' : ''} ${className}`.trim();
-  const ic = icon === false ? null : icon ?? (variant === 'primary' ? <ArrowRight size={18} strokeWidth={1.5} aria-hidden /> : <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden />);
-  if (to) {
-    return (
-      <Link to={to} className={cls} aria-disabled={rest.disabled || undefined}>
-        <span>{children}</span>
-        {ic}
-      </Link>
-    );
-  }
-  return (
-    <button type="button" className={cls} {...rest}>
-      <span>{children}</span>
-      {ic}
-    </button>
-  );
-}
-
-/** Small choice pill: gold fill sweeps in on hover; stays filled when selected. */
-export function Chip({ selected, children, ...rest }: { selected?: boolean; children: ReactNode } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>) {
-  return (
-    <button type="button" className="chip" aria-pressed={selected} {...rest}>
-      <span>{children}</span>
-    </button>
-  );
-}
-
-export function Eyebrow({ children, dot = true, className = '' }: { children: ReactNode; dot?: boolean; className?: string }) {
-  return (
-    <p className={`eyebrow ${className}`.trim()}>
-      {dot && <i className="eyebrow-dot" aria-hidden />}
-      {children}
-    </p>
-  );
-}
+import { Check, Info, type LucideIcon } from 'lucide-react';
+import type { Difficulty } from '../content/types';
 
 export const CREDIT =
-  'Concept demo by Team Apex. Shows features proposed for Prepito (prepito.in), an independent CAT preparation platform. Not affiliated with or endorsed by Prepito. All content in this demo is original.';
+  'Pace is a concept redesign by Team Apex, showing features proposed for Prepito (prepito.in), an independent CAT preparation platform. Not affiliated with or endorsed by Prepito. All questions, lessons and notes on this site are original.';
 
-export function CreditFooter() {
+export const SAMPLE_TIP = 'This is a demo. Numbers and posts from other students are illustrative.';
+
+export function CreditFooter({ compact }: { compact?: boolean }) {
   return (
-    <footer className="credit" role="contentinfo">
+    <footer className={`credit${compact ? ' credit-compact' : ''}`}>
       <p>{CREDIT}</p>
     </footer>
   );
 }
 
-/** Code-drawn slab mark used in the wordmark. */
-export function Mark({ size = 28 }: { size?: number }) {
+type Variant = 'primary' | 'secondary' | 'ghost' | 'reward';
+
+type BtnProps = {
+  variant?: Variant;
+  to?: string;
+  icon?: LucideIcon;
+  block?: boolean;
+  children: ReactNode;
+  className?: string;
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>;
+
+export function Button({ variant = 'secondary', to, icon: Icon, block, children, className = '', ...rest }: BtnProps) {
+  const cls = `btn btn-${variant}${block ? ' btn-block' : ''} ${className}`.trim();
+  const icon = Icon ? <Icon size={18} strokeWidth={1.5} aria-hidden /> : null;
+  if (to && !rest.disabled) {
+    return (
+      <Link to={to} className={cls} onClick={rest.onClick as never}>
+        {icon}
+        {children}
+      </Link>
+    );
+  }
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden>
-      <rect x="8" y="5" width="16" height="20" rx="3.5" fill="none" stroke="var(--text)" strokeWidth="1.5" />
-      <rect x="8" y="22.5" width="16" height="2.5" rx="1.25" fill="var(--gold)" />
-      <rect x="12" y="10" width="8" height="1.5" rx=".75" fill="var(--text)" opacity=".5" />
-      <rect x="12" y="14" width="5" height="1.5" rx=".75" fill="var(--text)" opacity=".5" />
-    </svg>
+    <button type="button" className={cls} {...rest}>
+      {icon}
+      {children}
+    </button>
   );
 }
 
-/** A disc drawn from concentric circles with a soft inner shadow, used as a plan node. */
-export function Disc({ state, children }: { state: 'done' | 'current' | 'todo'; children?: ReactNode }) {
-  const gold = state === 'current';
+export function Chip({ selected, children, ...rest }: { selected?: boolean; children: ReactNode } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>) {
   return (
-    <span className={`disc disc-${state}`} aria-hidden>
-      <svg viewBox="0 0 48 48" width="48" height="48">
-        <defs>
-          <radialGradient id={`dg-${state}`} cx="50%" cy="38%" r="70%">
-            <stop offset="0%" stopColor={gold ? '#F7D27A' : '#2A2230'} />
-            <stop offset="100%" stopColor={gold ? '#E9B04A' : '#17131A'} />
-          </radialGradient>
-        </defs>
-        <circle cx="24" cy="24" r="22" fill="none" stroke={gold ? 'rgba(233,176,74,.5)' : 'rgba(243,237,228,.14)'} strokeWidth="1" />
-        <circle cx="24" cy="24" r="17" fill={`url(#dg-${state})`} />
-        <circle cx="24" cy="24" r="17" fill="none" stroke="rgba(0,0,0,.45)" strokeWidth="3" style={{ filter: 'blur(2px)' }} clipPath="circle(17px at 24px 24px)" />
-        <circle cx="24" cy="24" r="10" fill="none" stroke={gold ? 'rgba(26,18,6,.35)' : 'rgba(243,237,228,.12)'} strokeWidth="1" />
-      </svg>
-      <span className="disc-inner">{children}</span>
-    </span>
+    <button type="button" className="chip" aria-pressed={!!selected} {...rest}>
+      {selected && <Check size={14} strokeWidth={2} aria-hidden />}
+      {children}
+    </button>
   );
 }
 
-/** Segmented bar meter: one short vertical bar per minute. */
-export function Segments({ minutes, lit }: { minutes: number; lit: boolean }) {
-  const n = Math.max(1, Math.round(minutes));
+export type TabDef<T extends string> = { id: T; label: string };
+
+export function Tabs<T extends string>({ tabs, value, onChange, label }: { tabs: TabDef<T>[]; value: T; onChange: (t: T) => void; label: string }) {
+  const refs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const onKey = (e: React.KeyboardEvent, i: number) => {
+    const delta = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!delta) return;
+    e.preventDefault();
+    const next = tabs[(i + delta + tabs.length) % tabs.length];
+    onChange(next.id);
+    refs.current[next.id]?.focus();
+  };
   return (
-    <span className={`segs${lit ? ' segs-lit' : ''}`} aria-hidden>
-      {Array.from({ length: n }, (_, i) => (
-        <i key={i} />
+    <div className="tabs" role="tablist" aria-label={label}>
+      {tabs.map((t, i) => (
+        <button
+          key={t.id}
+          ref={(el) => {
+            refs.current[t.id] = el;
+          }}
+          type="button"
+          role="tab"
+          className="tab"
+          aria-selected={t.id === value}
+          tabIndex={t.id === value ? 0 : -1}
+          onClick={() => onChange(t.id)}
+          onKeyDown={(e) => onKey(e, i)}
+        >
+          {t.label}
+        </button>
       ))}
+    </div>
+  );
+}
+
+export function Stat({ value, label, note }: { value: ReactNode; label: string; note?: string }) {
+  return (
+    <div className="stat">
+      <b>{value}</b>
+      <span>{label}</span>
+      {note && <small>{note}</small>}
+    </div>
+  );
+}
+
+export function Progress({ value, label }: { value: number; label: string }) {
+  const pct = Math.round(Math.max(0, Math.min(1, value)) * 100);
+  return (
+    <div className="progress" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={label}>
+      <i style={{ width: `${pct}%` }} />
+    </div>
+  );
+}
+
+export function Tag({ children, tone }: { children: ReactNode; tone?: 'ok' | 'bad' | 'warn' | 'primary' }) {
+  return <span className={`tag${tone ? ` tag-${tone}` : ''}`}>{children}</span>;
+}
+
+export function DifficultyTag({ level }: { level: Difficulty }) {
+  const tone = level === 'Easy' ? 'ok' : level === 'Hard' ? 'bad' : 'warn';
+  return (
+    <span className={`tag tag-${tone}`}>
+      <i className="dot" aria-hidden />
+      {level}
     </span>
   );
 }
 
-/** Traps focus inside a dialog. Escape does nothing unless onEscape is given. */
-export function Modal({ children, labelledBy, describedBy, onEscape, tone }: { children: ReactNode; labelledBy: string; describedBy?: string; onEscape?: () => void; tone?: 'ember' }) {
+/** Required on every block that shows other students' activity. */
+export function SampleTag() {
+  return (
+    <span className="tag sample" tabIndex={0} aria-label={`Sample data. ${SAMPLE_TIP}`}>
+      <Info size={12} strokeWidth={1.5} aria-hidden />
+      Sample data
+      <span className="tip" role="tooltip" aria-hidden>
+        {SAMPLE_TIP}
+      </span>
+    </span>
+  );
+}
+
+export function Empty({ icon: Icon, text, action }: { icon: LucideIcon; text: string; action?: ReactNode }) {
+  return (
+    <div className="empty">
+      <Icon size={32} strokeWidth={1.5} aria-hidden />
+      <p>{text}</p>
+      {action}
+    </div>
+  );
+}
+
+/** Centred dialog. Focus stays inside; Escape closes only when onClose is given. */
+export function Dialog({ title, children, actions, onClose }: { title: string; children: ReactNode; actions: ReactNode; onClose?: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
+  const titleId = useRef(`dlg-${Math.random().toString(36).slice(2, 8)}`).current;
   useEffect(() => {
     const prev = document.activeElement as HTMLElement | null;
-    const root = ref.current!;
-    const focusables = () => Array.from(root.querySelectorAll<HTMLElement>('button, [href], input, [tabindex]:not([tabindex="-1"])')).filter((el) => !el.hasAttribute('disabled'));
+    const root = ref.current as HTMLDivElement;
+    const focusables = () => Array.from(root.querySelectorAll<HTMLElement>('button, [href], input, textarea, select')).filter((el) => !el.hasAttribute('disabled'));
     focusables()[0]?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        e.preventDefault();
-        onEscape?.();
-        return;
+        e.stopPropagation();
+        onClose?.();
       }
       if (e.key !== 'Tab') return;
       const f = focusables();
@@ -135,31 +173,53 @@ export function Modal({ children, labelledBy, describedBy, onEscape, tone }: { c
         first.focus();
       }
     };
-    document.addEventListener('keydown', onKey, true);
+    root.addEventListener('keydown', onKey);
     return () => {
-      document.removeEventListener('keydown', onKey, true);
+      root.removeEventListener('keydown', onKey);
       prev?.focus?.();
     };
-  }, [onEscape]);
+  }, [onClose]);
   return (
-    <div className="modal-backdrop">
-      <div ref={ref} role="alertdialog" aria-modal="true" aria-labelledby={labelledBy} aria-describedby={describedBy} className={`modal${tone === 'ember' ? ' modal-ember' : ''}`}>
+    <div className="overlay">
+      <div ref={ref} className="dialog" role="dialog" aria-modal="true" aria-labelledby={titleId}>
+        <h2 id={titleId}>{title}</h2>
         {children}
+        <div className="dialog-actions">{actions}</div>
       </div>
     </div>
   );
 }
 
-/** Reads true once `query` matches; updates live. */
-export function useMedia(query: string): boolean {
-  const [m, setM] = useState(() => (typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query).matches : false));
+// ---- Toasts ----
+
+type ToastItem = { id: number; text: string };
+let pushToast: ((text: string) => void) | null = null;
+
+/** Shows a short message at the bottom left. Safe to call from anywhere. */
+export function toast(text: string) {
+  pushToast?.(text);
+}
+
+export function Toasts() {
+  const [items, setItems] = useState<ToastItem[]>([]);
+  const add = useCallback((text: string) => {
+    const id = Date.now() + Math.random();
+    setItems((xs) => [...xs, { id, text }]);
+    window.setTimeout(() => setItems((xs) => xs.filter((x) => x.id !== id)), 3500);
+  }, []);
   useEffect(() => {
-    if (!window.matchMedia) return;
-    const mq = window.matchMedia(query);
-    const on = () => setM(mq.matches);
-    on();
-    mq.addEventListener('change', on);
-    return () => mq.removeEventListener('change', on);
-  }, [query]);
-  return m;
+    pushToast = add;
+    return () => {
+      pushToast = null;
+    };
+  }, [add]);
+  return (
+    <div className="toasts no-print" role="status" aria-live="polite">
+      {items.map((t) => (
+        <div className="toast" key={t.id}>
+          {t.text}
+        </div>
+      ))}
+    </div>
+  );
 }

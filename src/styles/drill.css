@@ -1,0 +1,76 @@
+.drill-timer {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.drill-timer.warn {
+  color: var(--warn);
+}
+
+.drill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 760px;
+}
+
+.drill-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.drill-row.dragging {
+  border-color: var(--primary);
+}
+
+.drill-row b {
+  display: block;
+  font-weight: 500;
+}
+
+.drill-row .small {
+  display: block;
+}
+
+.drill-grip {
+  cursor: grab;
+  touch-action: none;
+  color: var(--muted);
+}
+
+.drill-rank {
+  width: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.drill-cols {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+}
+
+.drill-list-plain {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.drill-reason {
+  display: block;
+  margin-left: 16px;
+}
+
+@media (max-width: 767px) {
+  .drill-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

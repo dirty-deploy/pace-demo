@@ -1,3 +1,5 @@
+> Replaced by DESIGN_V2.md. Kept for history only.
+
 # Design direction for Pace
 
 Read this after BUILD_SPEC.md. Where the two disagree on visuals, this file wins. Section 10 of BUILD_SPEC.md is replaced by this file.
