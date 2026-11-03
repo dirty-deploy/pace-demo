@@ -72,8 +72,11 @@ export function applyShields(log: DayLog, shields: number, today: Date, rule: St
   return { log: { ...log, [iso]: { ...(log[iso] ?? empty), shielded: true } }, shields: shields - 1, covered: [iso] };
 }
 
-/** Minutes studied on a day, never less than its lesson time. */
-export const dayMinutes = (d: DayActivity | undefined): number => Math.max(d?.minutes ?? 0, (d?.lessonSeconds ?? 0) / 60);
+/** Whole minutes studied on a day, never less than its lesson time, and at least 1 once anything timed was logged (as the day's own line shows). */
+export const dayMinutes = (d: DayActivity | undefined): number => {
+  const raw = Math.max(d?.minutes ?? 0, (d?.lessonSeconds ?? 0) / 60);
+  return raw > 0 ? Math.max(1, Math.round(raw)) : 0;
+};
 
 export function minutesInMonth(log: DayLog, year: number, month: number): number {
   const prefix = `${year}-${String(month + 1).padStart(2, '0')}`;

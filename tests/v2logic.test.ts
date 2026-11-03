@@ -98,7 +98,7 @@ describe('streak rule', () => {
       '2026-11-04': { questions: 2, lessonSeconds: 0, minutes: 0.5 },
       '2026-11-05': { questions: 0, lessonSeconds: 600, minutes: 0 },
     };
-    expect(minutesInMonth(log, 2026, 10)).toBeCloseTo(10.5);
+    expect(minutesInMonth(log, 2026, 10)).toBe(11);
     expect(minutesInMonth(log, 2026, 9)).toBe(20);
   });
   const day = (questions = 0, lessonSeconds = 0) => ({ questions, lessonSeconds, minutes: 10 });

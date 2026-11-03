@@ -116,3 +116,5 @@ Choices made:
 - Audit: `scripts/audit.mjs` (Playwright, against `vite preview` on 4173). Output goes to `audit-output/` (git-ignored). The scoring flow reads the answer plan from a KEYS file outside the repo so the script holds no answers.
 - `scripts/screenshots.mjs` accepts `ONLY=06,11` to re-capture only some shots without wiping the folder.
 - `tests/datacheck.test.ts`: one correct option inside each MCQ's options, numeric TITA answers, test questions exist once each, mocks and sectionals have 24 VARC / 22 DILR / 22 QA. Prints only ids.
+- Streak (follow-up found in the re-captured screenshot): a day's minutes are now whole minutes, at least 1 once anything timed was logged, matching the day's own "1 min of lessons" line. Before, a few seconds of lessons showed "1 min of lessons" for today next to "0 min studied" for the month.
+- Re-captured screenshots: 06 to 11 and 19 (test window, DILR set, cap dialog, result, replay, review, community, streak), light and dark where they exist. Others are unchanged.
