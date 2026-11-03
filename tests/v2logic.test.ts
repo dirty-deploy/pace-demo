@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { McqQuestion, Question, TitaQuestion } from '../src/content/types';
 import { formatClock, parseQuickAdd, subjectOf } from '../src/logic/quickadd';
-import { applyShields, bestStreak, currentStreak, DEFAULT_RULE, heatLevel, ruleMet, weekStates, type DayLog } from '../src/logic/streak';
+import { applyShields, bestStreak, currentStreak, DEFAULT_RULE, heatLevel, minutesInMonth, ruleMet, weekStates, type DayLog } from '../src/logic/streak';
 import { balanceOf, couponCode, discountFor, earn, EARN_RULES, spend, type CoinEntry } from '../src/logic/coins';
 import { BALANCED, buildDailySet, matchMix, mixSummary, orderForTest, quota, type DailyConfig } from '../src/logic/dailyset';
 import { isCorrect, marksFor, normaliseTita, scoreLine } from '../src/logic/scoring';
@@ -92,6 +92,15 @@ describe('quick-add parsing', () => {
 });
 
 describe('streak rule', () => {
+  it('counts today, short tests and lesson time in the month total', () => {
+    const log: DayLog = {
+      '2026-10-31': { questions: 5, lessonSeconds: 0, minutes: 20 },
+      '2026-11-04': { questions: 2, lessonSeconds: 0, minutes: 0.5 },
+      '2026-11-05': { questions: 0, lessonSeconds: 600, minutes: 0 },
+    };
+    expect(minutesInMonth(log, 2026, 10)).toBeCloseTo(10.5);
+    expect(minutesInMonth(log, 2026, 9)).toBe(20);
+  });
   const day = (questions = 0, lessonSeconds = 0) => ({ questions, lessonSeconds, minutes: 10 });
   it('counts 1 question or 5 lesson minutes', () => {
     expect(ruleMet(day(1), DEFAULT_RULE)).toBe(true);
@@ -338,6 +347,15 @@ describe('section lock', () => {
     expect(roughPercentile(-10)).toBe(20);
     expect(roughPercentile(204)).toBe(100);
     expect(roughPercentile(60)).toBeGreaterThan(roughPercentile(30));
+  });
+  it('calibrates the rough percentile to the sample table', () => {
+    expect(roughPercentile(0)).toBe(20);
+    expect(roughPercentile(30)).toBe(75);
+    expect(roughPercentile(60)).toBe(95);
+    expect(roughPercentile(93)).toBeGreaterThan(99.3);
+    expect(roughPercentile(93)).toBeLessThan(99.8);
+    expect(roughPercentile(110)).toBe(99.8);
+    expect(roughPercentile(150)).toBeLessThan(100);
   });
 });
 

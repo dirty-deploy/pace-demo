@@ -93,3 +93,21 @@ One line per choice. Answers from the person who launched the build are marked (
 - Screenshots: the script patches `Date` with an offset so today reads 2026-10-31 while timers keep running; it moves the offset forward to reach the drill warning and the cap. Mobile shots use a 2x device scale factor. In full-page mobile shots the fixed tab bar appears mid-page; that is a capture artifact.
 - No analytics, sound, backend, environment variables or server functions.
 - `reference/inspiration/` (frames from other products) is git-ignored: it is input material only and should not be published with the demo. The rest of the supplied kit (specs, data, own diagrams) is committed.
+
+## Pre-finale audit (2026-11-03)
+
+Asked at the start (answered):
+- Commit `FINALE AUDIT.md`; leave `LPL_FINANCIAL.pdf` untracked and untouched.
+- The audit pins the browser clock to 2026-11-04 with Playwright's clock emulation. The app has no fixed-date hook and was not changed for this.
+- Fragmentary VARC explanations are rewritten by hand, not patched by the renderer.
+- Demo-path fixes may run to about 100 lines; everything else keeps the 40-line, 1-2 file cap.
+
+Choices made:
+- Backup tag `pre-finale-backup` points at 5c19ed2 (state before this pass).
+- Percentile: `SAMPLE_TABLE` recalibrated to the given points and rounded to one decimal, so 93/204 reads "Around 99.4 percentile" and 110 reads 99.8 rather than rounding up to 100.
+- DILR sectionals are 22 questions each by swapping whole sets (sets are not split, so set caps stay intact): sectional 1 = C01, L01, T01 + 3 seating; 2 = G01, L02, G02 + 3 seating; 3 = T01, G02, L01 + 3 seating. Each keeps a mix of families.
+- Streak month total: a day counts `max(minutes, lessonSeconds / 60)`, and tests log exact minutes instead of rounding (a 40-second attempt used to log 0 min). The heat-map shade uses the same number.
+- Explanations: 32 VARC explanations (24 RC, 8 PS) rewritten so each option line reads "B is right: ..." or "C goes too far: ...". Keys unchanged; every ordinal in the old text matched its key. Distractors that were named by description ("the scornful option") were mapped to their letters from the option text. PJ and OS explanations were already full sentences.
+- Renderer: Review split explanations at every full stop, which broke QA lines at decimals ("2.4" became a line "4 = ₹1,120.") and at factorials ("5! = 720"). It now splits only at a full stop, ! or ? followed by a space and not followed by an operator.
+- Credit on the test window moved from under the options to the bottom of the palette column. On mobile the palette is the "Questions" sheet, so the credit shows there and on the pre-test screen.
+- Review sideways scroll: caused by the hidden "Sample data" tooltip (240 px, left-anchored) still taking layout space when the tag sits near the right edge. Hidden tooltips now use `display: none` and cap at the viewport width. The 150 ms fade-in is lost.

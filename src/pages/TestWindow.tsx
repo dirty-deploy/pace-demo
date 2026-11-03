@@ -419,6 +419,7 @@ function Runner({ initial }: { initial: ActiveAttempt }) {
           Save and exit
         </Button>
       </div>
+      <CreditFooter compact />
     </>
   );
 
@@ -493,7 +494,6 @@ function Runner({ initial }: { initial: ActiveAttempt }) {
               </p>
             )}
             <QuestionBody key={qid} q={q} answer={st.answer} onAnswer={setAnswer} number={a.questionIndex + 1} total={section.questionIds.length} />
-            <CreditFooter compact />
           </section>
         </div>
         <aside className="tw-side" aria-label="Question palette">

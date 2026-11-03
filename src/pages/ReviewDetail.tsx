@@ -234,7 +234,9 @@ function Options({ q, item }: { q: Question; item: AttemptQuestion }) {
 }
 
 function splitLines(text: string): string[] {
-  return text.match(/[^.!?]+[.!?]+(\s|$)|[^.!?]+$/g)?.map((s) => s.trim()) ?? [text];
+  // Split at sentence ends only, so decimals such as 2.4 stay in one line.
+  const lines = text.split(/(?<=[.!?])\s+(?![-=+×÷*/),])/).map((s) => s.trim()).filter(Boolean);
+  return lines.length ? lines : [text];
 }
 
 function ExplanationPane({ q, sourceName }: { q: Question; sourceName: string }) {

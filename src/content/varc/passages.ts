@@ -133,7 +133,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     trapIndex: 2,
     explanation:
-      'The passage opens by calling the night market an answer to high rent, and it closes by saying the real test is how cheaply someone can try their luck there. That is the second option. The third option goes too far. The author calls drains and clean water overdue, so the worry is about added cost, not about all regulation.',
+      'The passage opens by calling the night market an answer to high rent, and it closes by saying the real test is how cheaply someone can try their luck there. B is right: it states that main idea. C goes too far: the author calls drains and clean water overdue, so the worry is about added cost, not about all regulation.',
     trap: 'Extreme language trap',
   }),
   rc('RC1', {
@@ -151,7 +151,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 3,
     trapIndex: 0,
     explanation:
-      'The last paragraph sets the test: how cheaply a person with little capital can try their luck. If such cooks are priced out, the reform has failed on the author\'s own terms. The first option is tempting, but the author says plainly that the measure is not how authentic the market feels to a visitor.',
+      'The last paragraph sets the test: how cheaply a person with little capital can try their luck. D is right: if such cooks are priced out, the reform has failed on the author\'s own terms. A is tempting but wrong: the author says plainly that the measure is not how authentic the market feels to a visitor.',
     trap: 'Reversal trap',
     lessonRef: INFERENCE_LESSON,
   }),
@@ -170,7 +170,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 0,
     trapIndex: 2,
     explanation:
-      'The third paragraph says a hundred stalls make the journey worthwhile, and that the crowd is something none of them could produce alone. The tempting option turns cooperation into a price deal. The passage says they cooperate without ever discussing it, and it never mentions fixing prices.',
+      'The third paragraph says a hundred stalls make the journey worthwhile, and that the crowd is something none of them could produce alone. A is right: it names that shared pull. C is wrong: it turns cooperation into a price deal, while the passage says they cooperate without ever discussing it and never mentions fixing prices.',
     trap: 'Distortion trap',
   }),
   rc('RC1', {
@@ -188,7 +188,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 2,
     trapIndex: 1,
     explanation:
-      'The author says trust comes from the visible kitchen, the queue and the familiar face. If buyers ignore all three, those signals are not producing trust at all. The food poisoning option feels strong, but the author has already said these signals do not guarantee safety, so it does not touch the claim about trust.',
+      'The author says trust comes from the visible kitchen, the queue and the familiar face. C is right: if buyers ignore all three, those signals are not producing trust at all. B feels strong but is wrong: the author has already said these signals do not guarantee safety, so food poisoning does not touch the claim about trust.',
     trap: 'Conceded point trap',
   }),
 
@@ -208,7 +208,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 2,
     trapIndex: 0,
     explanation:
-      'Most of the passage explains the process, and the last paragraph asks how much of it transfers to human groups. That is both halves of the third option. The first option says more than the text does. The author never says swarms beat committees, and warns that the comparison has limits.',
+      'Most of the passage explains the process, and the last paragraph asks how much of it transfers to human groups. C is right: it covers both halves. A is wrong: it says more than the text does, since the author never says swarms beat committees and warns that the comparison has limits.',
     trap: 'Distortion trap',
   }),
   rc('RC2', {
@@ -226,7 +226,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 3,
     trapIndex: 1,
     explanation:
-      'The third paragraph says a follower does not simply copy. She visits the site and forms her own judgment. The fading dance is true as well, but it answers a different question. It stops old loyalty from lasting, while the question is about imitation.',
+      'The third paragraph says a follower does not simply copy: she visits the site and forms her own judgment. D is right: it describes that check. B is true as well but wrong here: the fading dance stops old loyalty from lasting, while the question is about imitation.',
     trap: 'True but irrelevant trap',
   }),
   rc('RC2', {
@@ -244,7 +244,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 0,
     trapIndex: 1,
     explanation:
-      'The passage says fading means no group can hold out stubbornly against a better option. Remove the fading and such holding out becomes possible. The second option is too strong. Nothing in the text says a quorum would become impossible, only that the process relies on loyalty running out.',
+      'The passage says fading means no group can hold out stubbornly against a better option. A is right: remove the fading and such holding out becomes possible. B is too strong: nothing in the text says a quorum would become impossible, only that the process relies on loyalty running out.',
     trap: 'Extreme language trap',
     lessonRef: INFERENCE_LESSON,
   }),
@@ -263,7 +263,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     trapIndex: 0,
     explanation:
-      'The author says some of the transfer is sound, then points out that bees share one fate and people do not. That is a measured view. The scornful option picks up the sharp line about honesty being no virtue, but the author does accept several practical lessons.',
+      'The author says some of the transfer is sound, then points out that bees share one fate and people do not. B is right: that is a measured view. A is wrong: it picks up the sharp line about honesty being no virtue, but the author does accept several practical lessons.',
     trap: 'Extreme language trap',
   }),
 
@@ -283,7 +283,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 3,
     trapIndex: 0,
     explanation:
-      'The last paragraph says a standard needs only to be shared, stable and out of reach of the person holding the scales. That is the fourth option. The first option is the conclusion the author sets up and then turns down, saying it would be easy to think so but offering a more generous view.',
+      'The last paragraph says a standard needs only to be shared, stable and out of reach of the person holding the scales. D is right: it restates that condition. A is wrong: it is the conclusion the author sets up and then turns down, saying it would be easy to think so but offering a more generous view.',
     trap: 'Reversal trap',
   }),
   rc('RC3', {
@@ -301,7 +301,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 0,
     trapIndex: 1,
     explanation:
-      'The third paragraph says nobody altered the bar, and the metre simply became the length of that bar. The second option says the opposite. It is what a reader might expect to happen, which is why it pulls.',
+      'The third paragraph says nobody altered the bar, and the metre simply became the length of that bar. A is right: it says just that. B is wrong: it says the opposite, and it pulls because it is what a reader might expect to happen.',
     trap: 'Reversal trap',
   }),
   rc('RC3', {
@@ -319,7 +319,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     trapIndex: 2,
     explanation:
-      'The loyalty in question is keeping the metre where it already was. A fossil is a trace of something old, so the strange fraction is a trace of the old length. The third option twists the word loyalty. The loyalty is to the length, not to the survey\'s methods, which the author calls flawed.',
+      'The loyalty in question is keeping the metre where it already was. B is right: a fossil is a trace of something old, so the strange fraction is a trace of the old length. C twists the word loyalty: the loyalty is to the length, not to the survey\'s methods, which the author calls flawed.',
     trap: 'Distortion trap',
     lessonRef: INFERENCE_LESSON,
   }),
@@ -338,7 +338,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 2,
     trapIndex: 3,
     explanation:
-      'The metre kept its value while the reason behind that value was dropped. The club does the same: the fee stays, and the wheat price no longer explains it. The school option looks similar because a standard gets replaced, but there the value changes, which is the one thing that never happened to the metre.',
+      'The metre kept its value while the reason behind that value was dropped. C is right: the club\'s fee stays, and the wheat price no longer explains it. D looks similar but is wrong: the school replaces a standard, but there the value changes, which is the one thing that never happened to the metre.',
     trap: 'Surface similarity trap',
   }),
 
@@ -358,7 +358,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 0,
     trapIndex: 2,
     explanation:
-      'The author says the rules follow from the nature of the service: a sailor who will never meet the keepers must be able to trust the light. The third option does come from the passage, but moving keepers is only one rule. It cannot explain the logs, the inspections and the rest.',
+      'The author says the rules follow from the nature of the service: a sailor who will never meet the keepers must be able to trust the light. A is right: it gives that reason. C does come from the passage but is wrong: moving keepers is only one rule, and it cannot explain the logs, the inspections and the rest.',
     trap: 'Partial scope trap',
     lessonRef: INFERENCE_LESSON,
   }),
@@ -377,7 +377,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 2,
     trapIndex: 0,
     explanation:
-      'The passage shows how tightly keepers were managed, then asks what was missed when they left. The third title holds both ideas. The first title repeats the image from the opening lines, and the author raises that image only to call it largely wrong.',
+      'The passage shows how tightly keepers were managed, then asks what was missed when they left. C is right: the title holds both ideas. A is wrong: it repeats the image from the opening lines, and the author raises that image only to call it largely wrong.',
     trap: 'Opening image trap',
   }),
   rc('RC4', {
@@ -395,7 +395,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 3,
     trapIndex: 0,
     explanation:
-      'The author says the work was dull and a sensor does not fall asleep, so automation is accepted. Then comes the turn: something less obvious disappeared and was never counted. The nostalgic option is what the author refuses, saying it is easy to mourn this as something noble but declining to do so.',
+      'The author says the work was dull and a sensor does not fall asleep, so automation is accepted. D is right: then comes the turn, as something less obvious disappeared and was never counted. A is wrong: nostalgia is what the author refuses, saying it is easy to mourn this as something noble but declining to do so.',
     trap: 'Reversal trap',
   }),
   rc('RC4', {
@@ -413,7 +413,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     trapIndex: 0,
     explanation:
-      'The lesson needs two parts: a saving on the recorded job, and an unrecorded duty lost with it. The conductors helped riders, which no one had counted, and that help vanished. The factory option has the saving but no hidden loss, so it covers only half of the lesson.',
+      'The lesson needs two parts: a saving on the recorded job, and an unrecorded duty lost with it. B is right: the conductors helped riders, which no one had counted, and that help vanished. A covers only half: the factory has the saving but no hidden loss.',
     trap: 'Partial scope trap',
   }),
 
@@ -433,7 +433,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 2,
     trapIndex: 0,
     explanation:
-      'The second paragraph says what we resent is less the lost time than the insult, the claim that his time counts for more than ours. The first option is the common-sense answer, and it is the one the author rejects by calling the delay a matter of seconds.',
+      'The second paragraph says what we resent is less the lost time than the insult, the claim that his time counts for more than ours. C is right: it names that insult. A is wrong: it is the common-sense answer, and the author rejects it by calling the delay a matter of seconds.',
     trap: 'Reversal trap',
     lessonRef: INFERENCE_LESSON,
   }),
@@ -452,7 +452,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     trapIndex: 0,
     explanation:
-      'The third paragraph says the single line may barely change the average wait, and that it makes waiting more equal. The first option is the natural guess about any queue redesign, but the passage says a shorter wait is not the main gift of the single line.',
+      'The third paragraph says the single line may barely change the average wait, and that it makes waiting more equal. B is right: it names that equality. A is wrong: it is the natural guess about any queue redesign, but the passage says a shorter wait is not the main gift of the single line.',
     trap: 'Reversal trap',
   }),
   rc('RC5', {
@@ -470,7 +470,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 3,
     trapIndex: 0,
     explanation:
-      'The author says the paid lane costs something beyond minutes: it ends a shared setting where rank did not apply. If people feel slighted even when their wait stays the same, that hidden cost is real. The first option supports the defenders of the lane, since the money raised is the part the author says can be counted.',
+      'The author says the paid lane costs something beyond minutes: it ends a shared setting where rank did not apply. D is right: if people feel slighted even when their wait stays the same, that hidden cost is real. A is wrong: it supports the defenders of the lane, since the money raised is the part the author says can be counted.',
     trap: 'Reversal trap',
   }),
   rc('RC5', {
@@ -488,7 +488,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 0,
     trapIndex: 1,
     explanation:
-      'The author admires the queue as a democratic way to share things, then warns that an hour is not worth the same to everyone. Praise with a limit is the first option. The second goes too far. The author says queues are fairer than they look in one sense, so the fairness is not called a myth.',
+      'The author admires the queue as a democratic way to share things, then warns that an hour is not worth the same to everyone. A is right: it is praise with a limit. B goes too far: the author says queues are fairer than they look in one sense, so the fairness is not called a myth.',
     trap: 'Extreme language trap',
   }),
 
@@ -508,7 +508,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     trapIndex: 2,
     explanation:
-      'The author says handwriting has nearly left public communication and kept private tasks, and calls this specialisation. Its slowness and looseness are what make it useful there. The third option overstates the studies. The author says the findings have not always been replicated and refuses to rest the case on them.',
+      'The author says handwriting has nearly left public communication and kept private tasks, and calls this specialisation. B is right: its slowness and looseness are what make it useful there. C overstates the studies: the author says the findings have not always been replicated and refuses to rest the case on them.',
     trap: 'Distortion trap',
   }),
   rc('RC6', {
@@ -526,7 +526,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 0,
     trapIndex: 1,
     explanation:
-      'The line closes the argument about lectures. The hand cannot keep up, so the writer must decide what is worth keeping. That is the first option. The second turns one case into a rule for all tools. The word always is the warning sign, and the author makes no such claim.',
+      'The line closes the argument about lectures: the hand cannot keep up, so the writer must decide what is worth keeping. A is right: it says exactly that. B turns one case into a rule for all tools: the word always is the warning sign, and the author makes no such claim.',
     trap: 'Extreme language trap',
     lessonRef: INFERENCE_LESSON,
   }),
@@ -545,7 +545,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 2,
     trapIndex: 0,
     explanation:
-      'The account rests on one step: slowness forces the writer to choose what to keep. If students drop words at random, no real choosing happens and the explanation fails. The first option is already granted by the author, who says the point survives even if the effect is modest, so it does little damage.',
+      'The account rests on one step: slowness forces the writer to choose what to keep. C is right: if students drop words at random, no real choosing happens and the explanation fails. A does little damage: the author already grants it, saying the point survives even if the effect is modest.',
     trap: 'Conceded point trap',
   }),
   rc('RC6', {
@@ -563,7 +563,7 @@ export const RC_QUESTIONS: McqQuestion[] = [
     answerIndex: 3,
     trapIndex: 0,
     explanation:
-      'The author compares handwriting to the candle: it lost its main job and kept a smaller, special one. Horses follow the same path. The steam engine option describes a tool killed outright, and the author says older technologies are seldom killed that way.',
+      'The author compares handwriting to the candle: it lost its main job and kept a smaller, special one. D is right: horses follow the same path. A is wrong: steam engines were killed outright, and the author says older technologies are seldom killed that way.',
     trap: 'Reversal trap',
   }),
 ];

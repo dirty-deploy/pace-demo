@@ -474,15 +474,14 @@ main:focus {
   line-height: 1.45;
   white-space: normal;
   box-shadow: var(--shadow);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 150ms var(--ease);
+  /* Hidden tips take no space, so a tag near the right edge cannot widen the page. */
+  display: none;
+  max-width: calc(100vw - 32px);
 }
 
 .sample:hover .tip,
 .sample:focus .tip {
-  opacity: 1;
-  visibility: visible;
+  display: block;
 }
 
 /* ---- Tables ---- */

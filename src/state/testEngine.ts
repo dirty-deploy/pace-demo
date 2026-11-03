@@ -177,7 +177,7 @@ export function finishAttempt(a: ActiveAttempt): string {
       : s.sessions;
     return { ...s, active, attempts: [...s.attempts, record], pace: [...s.pace, ...samples], sessions };
   });
-  logActivity({ questions: answered, minutes: Math.round(seconds / 60) });
+  logActivity({ questions: answered, minutes: seconds / 60 });
   const coin = COIN_FOR[a.def.type];
   if (coin && answered > 0) earnCoins(coin);
   return record.id;

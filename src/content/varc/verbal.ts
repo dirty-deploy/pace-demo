@@ -233,7 +233,7 @@ export const PARA_SUMMARIES: McqQuestion[] = [
     answerIndex: 0,
     trapIndex: 1,
     explanation:
-      'The paragraph says the steps of a skill blur together for the expert, so a newer tutor can sometimes teach better. The first option says exactly that. The second option names the cause the writer rules out in the opening line: the reason is not arrogance.',
+      'The paragraph says the steps of a skill blur together for the expert, so a newer tutor can sometimes teach better. A is right: it says exactly that. B is wrong: it names the cause the writer rules out in the opening line, since the reason is not arrogance.',
     trap: 'Reversal trap',
   }),
   ps({
@@ -252,7 +252,7 @@ export const PARA_SUMMARIES: McqQuestion[] = [
     answerIndex: 3,
     trapIndex: 2,
     explanation:
-      'The paragraph has two moves: mending now signals taste, and that change does nothing for people who mend out of need. Only the fourth option keeps both. The third option claims the poor have gained, which the writer directly denies.',
+      'The paragraph has two moves: mending now signals taste, and that change does nothing for people who mend out of need. D is right: only it keeps both. C is wrong: it claims the poor have gained, which the writer directly denies.',
     trap: 'Reversal trap',
   }),
   ps({
@@ -271,7 +271,7 @@ export const PARA_SUMMARIES: McqQuestion[] = [
     answerIndex: 1,
     trapIndex: 2,
     explanation:
-      'The writer says one dry day proves nothing and that forecasts must be scored over many days. That is the second option. The third option repeats the public mistake the paragraph is correcting.',
+      'The writer says one dry day proves nothing and that forecasts must be scored over many days. B is right: it states that point. C is wrong: it repeats the public mistake the paragraph is correcting.',
     trap: 'Reversal trap',
   }),
   ps({
@@ -290,7 +290,7 @@ export const PARA_SUMMARIES: McqQuestion[] = [
     answerIndex: 2,
     trapIndex: 3,
     explanation:
-      'The paragraph says the loyalties compete, so every translation records a choice. That is the third option. The fourth option borrows the word betray but changes its target. The writer means one quality gives way to another, not that the translator wrongs the poet.',
+      'The paragraph says the loyalties compete, so every translation records a choice. C is right: it states that point. D borrows the word betray but changes its target: the writer means one quality gives way to another, not that the translator wrongs the poet.',
     trap: 'Distortion trap',
   }),
   ps({
@@ -309,7 +309,7 @@ export const PARA_SUMMARIES: McqQuestion[] = [
     answerIndex: 2,
     trapIndex: 0,
     explanation:
-      'The last sentence is the point: extra time is worth little unless it is protected. The third option says so. The first option is tempting, but the writer warns that this does not mean every project should be rushed.',
+      'The last sentence is the point: extra time is worth little unless it is protected. C is right: it says so. A is tempting but wrong: the writer warns that this does not mean every project should be rushed.',
     trap: 'Extreme language trap',
   }),
   ps({
@@ -328,7 +328,7 @@ export const PARA_SUMMARIES: McqQuestion[] = [
     answerIndex: 0,
     trapIndex: 2,
     explanation:
-      'The writer says politics was always in the labels and was only hidden. So rewriting them reveals something that was already there, which is the first option. The third option takes the side of the critics, while the writer answers them and disagrees.',
+      'The writer says politics was always in the labels and was only hidden. A is right: rewriting them reveals something that was already there. C is wrong: it takes the side of the critics, while the writer answers them and disagrees.',
     trap: 'Reversal trap',
   }),
   ps({
@@ -347,7 +347,7 @@ export const PARA_SUMMARIES: McqQuestion[] = [
     answerIndex: 3,
     trapIndex: 2,
     explanation:
-      'The writer says the million-sapling figure measures the wrong thing, because the benefit comes from trees that live long enough to grow. That is the fourth option. The third option goes too far. The writer says an old tree may often be worth more, not that planting should stop.',
+      'The writer says the million-sapling figure measures the wrong thing, because the benefit comes from trees that live long enough to grow. D is right: it states that point. C goes too far: the writer says an old tree may often be worth more, not that planting should stop.',
     trap: 'Extreme language trap',
   }),
   ps({
@@ -366,7 +366,7 @@ export const PARA_SUMMARIES: McqQuestion[] = [
     answerIndex: 1,
     trapIndex: 3,
     explanation:
-      'The paragraph traces a chain: kindness pushes scores to the top, so the score loses meaning, and low marks bite too hard. The second option keeps that whole chain. The fourth option picks up one detail and adds a recommendation the writer never makes.',
+      'The paragraph traces a chain: kindness pushes scores to the top, so the score loses meaning, and low marks bite too hard. B is right: it keeps that whole chain. D is wrong: it picks up one detail and adds a recommendation the writer never makes.',
     trap: 'Partial scope trap',
   }),
 ];

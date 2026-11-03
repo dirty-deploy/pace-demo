@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, Repeat2, ShieldCheck } from 'lucide-react';
 import { Button, Empty, Stat } from '../components/ui';
 import { balanceOf, SPEND_ITEMS } from '../logic/coins';
 import { addDays, parseISO, shortDate, toISO, weekday, weekOf } from '../logic/dates';
-import { bestStreak, currentStreak, formatHours, heatLevel, minutesInMonth, ruleMet, type DayActivity, type StreakRule } from '../logic/streak';
+import { bestStreak, currentStreak, dayMinutes, formatHours, heatLevel, minutesInMonth, ruleMet, type DayActivity, type StreakRule } from '../logic/streak';
 import { ruleOf } from '../state/actions';
 import { today, useApp } from '../state/store';
 import '../styles/streak.css';
@@ -29,7 +29,7 @@ function activityText(day: DayActivity | undefined): string {
   const parts: string[] = [];
   if (day?.questions) parts.push(plural(day.questions, 'question'));
   if (day?.lessonSeconds) parts.push(`${Math.max(1, Math.round(day.lessonSeconds / 60))} min of lessons`);
-  if (!parts.length && day?.minutes) parts.push(`${Math.round(day.minutes)} min of study`);
+  if (!parts.length && day?.minutes) parts.push(`${Math.max(1, Math.round(day.minutes))} min of study`);
   if (day?.shielded) parts.push('covered by a shield');
   return parts.length ? parts.join(', ') : 'nothing logged';
 }
@@ -54,7 +54,7 @@ function DayCell({ date, day, month, todayISO }: { date: Date; day: DayActivity 
   const iso = toISO(date);
   const future = iso > todayISO;
   const isToday = iso === todayISO;
-  const cls = ['st-day', `st-heat-${future ? 0 : heatLevel(day?.minutes ?? 0)}`, date.getMonth() !== month && 'is-outside', isToday && 'is-today'].filter(Boolean).join(' ');
+  const cls = ['st-day', `st-heat-${future ? 0 : heatLevel(dayMinutes(day))}`, date.getMonth() !== month && 'is-outside', isToday && 'is-today'].filter(Boolean).join(' ');
   const label = future ? dayName(date) : `${dayName(date)}${isToday ? ', today' : ''}: ${activityText(day)}`;
   return (
     <td title={label}>
