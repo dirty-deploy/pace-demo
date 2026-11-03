@@ -216,12 +216,15 @@ function Runner({ initial }: { initial: ActiveAttempt }) {
     if (save) saveAttempt(next);
   }, []);
 
-  const finish = useCallback(() => {
-    if (done.current) return;
-    done.current = true;
-    const id = finishAttempt(ref.current);
-    nav(`/test/${ref.current.def.id}/result?a=${id}`, { replace: true });
-  }, [nav]);
+  const finish = useCallback(
+    (toReplay = false) => {
+      if (done.current) return;
+      done.current = true;
+      const id = finishAttempt(ref.current);
+      nav(toReplay ? `/progress/review/${id}?tab=replay` : `/test/${ref.current.def.id}/result?a=${id}`, { replace: true });
+    },
+    [nav],
+  );
 
   const a = ref.current;
   const section = a.def.sections[a.sectionIndex];
@@ -333,6 +336,8 @@ function Runner({ initial }: { initial: ActiveAttempt }) {
     });
     setPhase('run');
     if (nextIdx >= 0) goTo(nextIdx);
+    // A one-set attempt (from the drill or a redo) has nothing left after leaving: finish and show its replay.
+    else if (cur.def.sections.every((s) => s.questionIds.every((id) => getQuestion(id).groupId === g))) finish(true);
     else {
       force((x) => x + 1);
       toast('No sets left to open. You can check your answers or submit.');
@@ -547,7 +552,7 @@ function Runner({ initial }: { initial: ActiveAttempt }) {
           actions={
             <>
               <Button onClick={() => setPhase('run')}>Keep working</Button>
-              <Button variant="primary" onClick={finish}>
+              <Button variant="primary" onClick={() => finish()}>
                 Submit
               </Button>
             </>

@@ -13,7 +13,9 @@ if (!existsSync(join(root, 'dist/index.html'))) {
   console.error('dist/ not found. Run "npm run build" first.');
   process.exit(1);
 }
-rmSync(out, { recursive: true, force: true });
+// ONLY=06,11 re-captures only the shots whose names start with those prefixes and keeps the rest.
+const ONLY = process.env.ONLY ? process.env.ONLY.split(',') : null;
+if (!ONLY) rmSync(out, { recursive: true, force: true });
 mkdirSync(out, { recursive: true });
 
 const FIXED = new Date(2026, 10, 1, 18, 30, 0).getTime();
@@ -88,6 +90,7 @@ async function patchState(page, fn, arg) {
 async function run(vp, dark = false) {
   const suffix = dark ? `dark-${vp.tag}` : vp.tag;
   const shot = async (page, name, full = true) => {
+    if (ONLY && !ONLY.some((p) => name.startsWith(p))) return;
     await settle(page);
     await page.screenshot({ path: join(out, `${name}-${suffix}.png`), fullPage: full });
     console.log('  saved', `${name}-${suffix}.png`);
